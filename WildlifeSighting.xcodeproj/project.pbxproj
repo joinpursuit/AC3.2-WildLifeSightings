@@ -16,7 +16,7 @@
 		4B3673651E240C290069967C /* SightingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3673631E240C290069967C /* SightingTableViewCell.swift */; };
 		4B3673661E240C290069967C /* SightingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B3673641E240C290069967C /* SightingTableViewCell.xib */; };
 		4B3673681E240C720069967C /* AddSightingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3673671E240C720069967C /* AddSightingViewController.swift */; };
-		4B36736A1E240CA40069967C /* AddDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3673691E240CA40069967C /* AddDetailsViewController.swift */; };
+		4B36736A1E240CA40069967C /* SightingsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3673691E240CA40069967C /* SightingsDetailsViewController.swift */; };
 		4B9ACB481E24303600F2A93E /* TwitterWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9ACB471E24303600F2A93E /* TwitterWebViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +32,7 @@
 		4B3673631E240C290069967C /* SightingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightingTableViewCell.swift; sourceTree = "<group>"; };
 		4B3673641E240C290069967C /* SightingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SightingTableViewCell.xib; sourceTree = "<group>"; };
 		4B3673671E240C720069967C /* AddSightingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSightingViewController.swift; sourceTree = "<group>"; };
-		4B3673691E240CA40069967C /* AddDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDetailsViewController.swift; sourceTree = "<group>"; };
+		4B3673691E240CA40069967C /* SightingsDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightingsDetailsViewController.swift; sourceTree = "<group>"; };
 		4B9ACB471E24303600F2A93E /* TwitterWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterWebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +72,7 @@
 				4B3673671E240C720069967C /* AddSightingViewController.swift */,
 				4B3673631E240C290069967C /* SightingTableViewCell.swift */,
 				4B3673641E240C290069967C /* SightingTableViewCell.xib */,
-				4B3673691E240CA40069967C /* AddDetailsViewController.swift */,
+				4B3673691E240CA40069967C /* SightingsDetailsViewController.swift */,
 				4B36735D1E240AF50069967C /* SightingsViewController.swift */,
 				4B3673521E240A870069967C /* Assets.xcassets */,
 				4B3673541E240A870069967C /* LaunchScreen.storyboard */,
@@ -158,7 +158,7 @@
 				4B3673511E240A870069967C /* WildlifeSighting.xcdatamodeld in Sources */,
 				4B3673681E240C720069967C /* AddSightingViewController.swift in Sources */,
 				4B3673491E240A870069967C /* AppDelegate.swift in Sources */,
-				4B36736A1E240CA40069967C /* AddDetailsViewController.swift in Sources */,
+				4B36736A1E240CA40069967C /* SightingsDetailsViewController.swift in Sources */,
 				4B9ACB481E24303600F2A93E /* TwitterWebViewController.swift in Sources */,
 				4B36735E1E240AF50069967C /* SightingsViewController.swift in Sources */,
 				4B3673651E240C290069967C /* SightingTableViewCell.swift in Sources */,
