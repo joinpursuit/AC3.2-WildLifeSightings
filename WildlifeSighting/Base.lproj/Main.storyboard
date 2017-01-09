@@ -130,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="3880.8000000000002" y="448.42578710644682"/>
         </scene>
-        <!--Add Details View Controller-->
+        <!--Sightings Details View Controller-->
         <scene sceneID="bbO-kQ-wwU">
             <objects>
-                <viewController id="UPM-QC-Rs3" customClass="AddDetailsViewController" customModule="WildlifeSighting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UPM-QC-Rs3" customClass="SightingsDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jf5-HI-bEj"/>
                         <viewControllerLayoutGuide type="bottom" id="51u-wz-SR1"/>
@@ -203,8 +203,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dateWeatherLocationTextView" destination="HCS-CX-slf" id="wTA-b8-rob"/>
                         <outlet property="detailsTextView" destination="v7b-Ko-PCE" id="1qg-DN-5Aw"/>
+                        <outlet property="editSaveButton" destination="cRp-1s-nPE" id="nDT-rN-awx"/>
                         <outlet property="sightingImageView" destination="bL6-kX-TaP" id="bQD-jI-dpx"/>
+                        <outlet property="titleLabel" destination="t6E-if-N0D" id="0Fy-fQ-R84"/>
+                        <outlet property="titleTextField" destination="Y5v-RC-I3p" id="GZa-NM-It0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2bx-eK-bmw" userLabel="First Responder" sceneMemberID="firstResponder"/>
