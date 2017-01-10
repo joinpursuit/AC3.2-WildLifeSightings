@@ -37,6 +37,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         setDelegates()
         setUpTableView()
+        initializeFetchedResultsController()
     }
     
     func setUpTableView() {
@@ -49,7 +50,6 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         mapView.delegate = self
-        fetchedResultsController.delegate = self
     }
     
     
@@ -66,7 +66,9 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         let dateSort = NSSortDescriptor(key: #keyPath(Sighting.date), ascending: false)
         request.sortDescriptors = [dateSort]
         let sectionName = "dateString"
+
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
+        fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
         } catch {
@@ -80,7 +82,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - tableView delegate methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let sections = fetchedResultsController.sections else { fatalError("No sections in fetched results controller") }
+        guard let sections = fetchedResultsController.sections else { fatalError("No sections in fetched results controller")}
         return sections.count
     }
     
