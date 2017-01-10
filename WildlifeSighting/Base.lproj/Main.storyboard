@@ -130,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="3880.8000000000002" y="448.42578710644682"/>
         </scene>
-        <!--Sightings Details View Controller-->
+        <!--Sighting Details View Controller-->
         <scene sceneID="bbO-kQ-wwU">
             <objects>
-                <viewController id="UPM-QC-Rs3" customClass="SightingsDetailsViewController" sceneMemberID="viewController">
+                <viewController id="UPM-QC-Rs3" customClass="SightingDetailsViewController" customModule="WildlifeSighting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jf5-HI-bEj"/>
                         <viewControllerLayoutGuide type="bottom" id="51u-wz-SR1"/>
@@ -142,8 +142,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Image Details" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v7b-Ko-PCE">
-                                <rect key="frame" x="16" y="380" width="343" height="96"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" editable="NO" text="Image Details" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v7b-Ko-PCE">
+                                <rect key="frame" x="16" y="380" width="295" height="96"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="96" id="OdW-2h-RbJ"/>
@@ -152,29 +152,32 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bL6-kX-TaP">
-                                <rect key="frame" x="16" y="20" width="343" height="314"/>
+                                <rect key="frame" x="16" y="20" width="343" height="313.5"/>
                             </imageView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y5v-RC-I3p">
-                                <rect key="frame" x="16" y="342" width="305" height="30"/>
+                                <rect key="frame" x="16" y="341.5" width="295" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6E-if-N0D">
-                                <rect key="frame" x="24" y="347" width="34" height="21"/>
+                                <rect key="frame" x="24" y="346.5" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRp-1s-nPE">
-                                <rect key="frame" x="329" y="342" width="30" height="30"/>
+                                <rect key="frame" x="319" y="341.5" width="40" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="EV0-PT-ptl"/>
+                                    <constraint firstAttribute="width" constant="40" id="EV0-PT-ptl"/>
                                 </constraints>
                                 <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="editSaveButtonPressed:" destination="UPM-QC-Rs3" eventType="touchUpInside" id="UXF-O1-DKm"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" bounces="NO" text="Date / weather / location " translatesAutoresizingMaskIntoConstraints="NO" id="HCS-CX-slf">
-                                <rect key="frame" x="16" y="476" width="343" height="171"/>
+                                <rect key="frame" x="16" y="475.5" width="343" height="171.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -186,13 +189,13 @@
                             <constraint firstItem="cRp-1s-nPE" firstAttribute="leading" secondItem="Y5v-RC-I3p" secondAttribute="trailing" constant="8" symbolic="YES" id="3r2-pI-Gqp"/>
                             <constraint firstItem="Y5v-RC-I3p" firstAttribute="leading" secondItem="AQB-sE-QRA" secondAttribute="leadingMargin" id="4MC-bZ-BBv"/>
                             <constraint firstItem="t6E-if-N0D" firstAttribute="leading" secondItem="AQB-sE-QRA" secondAttribute="leadingMargin" constant="8" id="6AS-82-INU"/>
-                            <constraint firstItem="v7b-Ko-PCE" firstAttribute="trailing" secondItem="AQB-sE-QRA" secondAttribute="trailingMargin" id="DJT-Wv-f8M"/>
                             <constraint firstItem="v7b-Ko-PCE" firstAttribute="top" secondItem="Y5v-RC-I3p" secondAttribute="bottom" constant="8" symbolic="YES" id="EY3-mG-cng"/>
                             <constraint firstItem="bL6-kX-TaP" firstAttribute="top" secondItem="jf5-HI-bEj" secondAttribute="bottom" id="GMh-Ps-iYP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bL6-kX-TaP" secondAttribute="trailing" id="LLU-I8-Zrw"/>
                             <constraint firstAttribute="bottom" secondItem="HCS-CX-slf" secondAttribute="bottom" constant="20" symbolic="YES" id="Tql-Nz-PVp"/>
                             <constraint firstItem="Y5v-RC-I3p" firstAttribute="centerY" secondItem="t6E-if-N0D" secondAttribute="centerY" id="Vth-2j-9xX"/>
                             <constraint firstItem="cRp-1s-nPE" firstAttribute="top" secondItem="bL6-kX-TaP" secondAttribute="bottom" constant="8" symbolic="YES" id="ZtO-pp-ZWZ"/>
+                            <constraint firstItem="v7b-Ko-PCE" firstAttribute="trailing" secondItem="Y5v-RC-I3p" secondAttribute="trailing" id="aeT-F3-lih"/>
                             <constraint firstItem="bL6-kX-TaP" firstAttribute="bottom" secondItem="AQB-sE-QRA" secondAttribute="centerY" id="fCs-WA-fuR"/>
                             <constraint firstItem="cRp-1s-nPE" firstAttribute="trailing" secondItem="AQB-sE-QRA" secondAttribute="trailingMargin" id="h6W-tc-qsn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HCS-CX-slf" secondAttribute="trailing" id="kGS-e8-Dnb"/>
@@ -238,10 +241,10 @@
                                 </connections>
                             </segmentedControl>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JVB-ax-Rp6">
-                                <rect key="frame" x="16" y="334" width="343" height="277"/>
+                                <rect key="frame" x="16" y="333.5" width="343" height="277.5"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mrn-Gs-D8s">
-                                <rect key="frame" x="16" y="64" width="343" height="270"/>
+                                <rect key="frame" x="16" y="64" width="343" height="269.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="ALO-41-Gex" id="oon-eB-grW"/>
