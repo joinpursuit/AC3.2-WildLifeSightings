@@ -244,7 +244,7 @@
                                 <rect key="frame" x="16" y="333.5" width="343" height="277.5"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mrn-Gs-D8s">
-                                <rect key="frame" x="16" y="64" width="343" height="269.5"/>
+                                <rect key="frame" x="16" y="72" width="343" height="261.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="ALO-41-Gex" id="oon-eB-grW"/>
@@ -260,8 +260,8 @@
                             <constraint firstItem="JVB-ax-Rp6" firstAttribute="leading" secondItem="zNb-NJ-NTi" secondAttribute="leadingMargin" id="4SE-Pq-wnv"/>
                             <constraint firstAttribute="bottom" secondItem="Uz7-nG-r2z" secondAttribute="bottom" constant="20" symbolic="YES" id="5VI-ql-NOl"/>
                             <constraint firstItem="Uz7-nG-r2z" firstAttribute="top" secondItem="JVB-ax-Rp6" secondAttribute="bottom" constant="8" symbolic="YES" id="PDx-qW-sBU"/>
-                            <constraint firstItem="Mrn-Gs-D8s" firstAttribute="top" secondItem="TPc-M0-LXh" secondAttribute="bottom" id="XM8-RB-xbC"/>
-                            <constraint firstItem="JVB-ax-Rp6" firstAttribute="top" secondItem="zNb-NJ-NTi" secondAttribute="centerY" id="rUY-vp-Ze1"/>
+                            <constraint firstItem="Mrn-Gs-D8s" firstAttribute="top" secondItem="TPc-M0-LXh" secondAttribute="bottom" constant="8" symbolic="YES" id="XM8-RB-xbC"/>
+                            <constraint firstItem="Mrn-Gs-D8s" firstAttribute="bottom" secondItem="zNb-NJ-NTi" secondAttribute="centerY" id="eZD-Va-ltL"/>
                             <constraint firstItem="JVB-ax-Rp6" firstAttribute="top" secondItem="Mrn-Gs-D8s" secondAttribute="bottom" id="trm-vQ-80r"/>
                             <constraint firstItem="JVB-ax-Rp6" firstAttribute="trailing" secondItem="zNb-NJ-NTi" secondAttribute="trailingMargin" id="wHu-lT-OEL"/>
                             <constraint firstItem="Uz7-nG-r2z" firstAttribute="leading" secondItem="zNb-NJ-NTi" secondAttribute="leadingMargin" id="yp1-3V-6pF"/>
@@ -279,6 +279,7 @@
                         <outlet property="mapOrDataSegmentedControl" destination="Uz7-nG-r2z" id="2tq-Oh-j3L"/>
                         <outlet property="mapView" destination="JVB-ax-Rp6" id="29a-Sh-wg6"/>
                         <outlet property="tableView" destination="Mrn-Gs-D8s" id="VhZ-JQ-vpH"/>
+                        <outlet property="tableViewBottomLayoutConstraint" destination="eZD-Va-ltL" id="S0H-tv-7uR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wps-Ch-KIh" userLabel="First Responder" sceneMemberID="firstResponder"/>

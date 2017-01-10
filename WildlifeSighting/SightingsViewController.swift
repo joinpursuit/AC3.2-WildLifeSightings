@@ -18,7 +18,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapOrDataSegmentedControl: UISegmentedControl!
-    
+    @IBOutlet weak var tableViewBottomLayoutConstraint: NSLayoutConstraint!
     
     
     // MARK: - Properties
@@ -56,6 +56,21 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     @IBAction func mapOrDataSegmentedControlChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            mapView.isHidden = false
+            tableViewBottomLayoutConstraint.isActive = false
+            tableViewBottomLayoutConstraint = tableView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor)
+            tableViewBottomLayoutConstraint.isActive = true
+
+        case 1:
+            mapView.isHidden = true
+            tableViewBottomLayoutConstraint.isActive = false
+            tableViewBottomLayoutConstraint = tableView.bottomAnchor.constraint(equalTo: mapOrDataSegmentedControl.topAnchor, constant: -8.0)
+            tableViewBottomLayoutConstraint.isActive = true
+        default:
+            break
+        }
     }
     
     
