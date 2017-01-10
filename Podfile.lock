@@ -1,0 +1,15 @@
+PODS:
+  - ImagePicker (2.0.0)
+  - SwiftSpinner (1.1.0)
+
+DEPENDENCIES:
+  - ImagePicker (~> 2.0)
+  - SwiftSpinner (~> 1.1)
+
+SPEC CHECKSUMS:
+  ImagePicker: 81175d36c2852cb543cb4f5d6c19e28f3e8d90eb
+  SwiftSpinner: c03815614599b91eea46594bd52ba742849d0414
+
+PODFILE CHECKSUM: 2044503319b6d180464ca65f2647fe0b530ba1f4
+
+COCOAPODS: 1.1.1
