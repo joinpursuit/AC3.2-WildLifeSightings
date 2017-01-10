@@ -1,0 +1,6 @@
+framework module Pods_WildlifeSighting {
+  umbrella header "Pods-WildlifeSighting-umbrella.h"
+
+  export *
+  module * { export * }
+}
