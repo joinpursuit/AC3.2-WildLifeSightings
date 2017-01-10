@@ -110,8 +110,10 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SightingTableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SightingTableViewCell", for: indexPath) as! SightingTableViewCell
         let object = fetchedResultsController.object(at: indexPath)
+        cell.sightingTitleLabel.text = object.name!
+        cell.sightingDateAndTimeLabel.text = object.dateAndTime
         return cell
     }
     
