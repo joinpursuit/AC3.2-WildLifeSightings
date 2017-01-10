@@ -9,7 +9,7 @@
 import Foundation
 
 enum DarkSkiesModelError: Error {
-    case response, result, summary, temperature
+    case response, result, summary, temperature, initFaliure
 }
 
 class DarkSkiesWeather {
@@ -21,7 +21,7 @@ class DarkSkiesWeather {
         self.temp = temp
     }
     
-    init?(from dictionary:[String:Any]) {
+    init?(from dictionary:[String:Any]) throws {
         guard let result = dictionary["currently"] as? [String : Any],
             let summary = result["summary"] as? String,
             let temperature = result["temperature"] as? Double
@@ -31,11 +31,20 @@ class DarkSkiesWeather {
         self.temp = temperature
     }
     
-    static func getWeather(from dict:[String:Any]) -> DarkSkiesWeather? {
-        
-        if let weather = DarkSkiesWeather(from: dict) {
-            return weather
+    static func getWeather(from data: Data) -> DarkSkiesWeather? {
+        do {
+            let jsonData: Any = try JSONSerialization.jsonObject(with: data, options: [])
+            guard let responseDict = jsonData as? [ String : Any ] else { throw DarkSkiesModelError.response }
+            if let weather = try DarkSkiesWeather(from: responseDict) {
+                return weather
+            } else {
+                throw DarkSkiesModelError.initFaliure
+            }
         }
+        catch {
+            print(error)
+        }
+        
         return nil
     }
     
