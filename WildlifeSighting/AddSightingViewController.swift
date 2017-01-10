@@ -9,7 +9,8 @@
 import UIKit
 
 class AddSightingViewController: UIViewController {
-
+    
+    @IBOutlet weak var sightingImageView: UIImageView!
     @IBOutlet weak var sightingNameTextField: UITextField!
     @IBOutlet weak var sightingDetailsTextView: UITextView!
     @IBOutlet weak var currentWeatherSwitch: UISwitch!

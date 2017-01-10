@@ -23,64 +23,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqi-Nn-GLk">
-                                <rect key="frame" x="16" y="168" width="343" height="101"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqi-Nn-GLk">
+                                <rect key="frame" x="16" y="356" width="343" height="174"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="174" id="LY6-dj-L96"/>
+                                </constraints>
                                 <string key="text">Add image details (this is an editable text view)  ..... When you click save, it also adds the current location and weather info for the current location and time</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVT-o9-l30">
-                                <rect key="frame" x="16" y="92" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Take photo"/>
-                                <connections>
-                                    <action selector="takePhotoButtonPressed:" destination="aZF-oG-2AP" eventType="touchUpInside" id="age-xT-wlC"/>
-                                </connections>
-                            </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WQ8-gS-Voh">
-                                <rect key="frame" x="16" y="318" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WQ8-gS-Voh">
+                                <rect key="frame" x="16" y="538" width="51" height="31"/>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6M-kQ-Dpb">
-                                <rect key="frame" x="16" y="410" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6M-kQ-Dpb">
+                                <rect key="frame" x="16" y="577" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Include current weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUm-4q-Zfg">
-                                <rect key="frame" x="110" y="323" width="182" height="21"/>
+                                <rect key="frame" x="73" y="543" width="182" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Include current location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SD-0I-RSF">
-                                <rect key="frame" x="110" y="420" width="181" height="21"/>
+                                <rect key="frame" x="73" y="582" width="181" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of Image (not optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rv3-Vq-kFD">
-                                <rect key="frame" x="16" y="130" width="304" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of Image (not optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rv3-Vq-kFD">
+                                <rect key="frame" x="16" y="318" width="304" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejM-Et-qzw">
-                                <rect key="frame" x="16" y="503" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejM-Et-qzw">
+                                <rect key="frame" x="16" y="616" width="51" height="31"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Share to Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kI1-ic-apY">
-                                <rect key="frame" x="110" y="508" width="122" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share to Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kI1-ic-apY">
+                                <rect key="frame" x="73" y="621" width="122" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BIP-35-CVP">
+                                <rect key="frame" x="16" y="72" width="343" height="238"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="238" id="bun-Hw-qu6"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVT-o9-l30">
+                                <rect key="frame" x="149" y="176" width="77" height="30"/>
+                                <state key="normal" title="Take photo"/>
+                                <connections>
+                                    <action selector="takePhotoButtonPressed:" destination="aZF-oG-2AP" eventType="touchUpInside" id="age-xT-wlC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ejM-Et-qzw" firstAttribute="top" secondItem="B6M-kQ-Dpb" secondAttribute="bottom" constant="8" symbolic="YES" id="1dz-xk-cPE"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="Yqi-Nn-GLk" secondAttribute="leading" id="2VS-sF-Eza"/>
+                            <constraint firstItem="Rv3-Vq-kFD" firstAttribute="leading" secondItem="Yqi-Nn-GLk" secondAttribute="leading" id="5IQ-ju-suB"/>
+                            <constraint firstAttribute="bottom" secondItem="ejM-Et-qzw" secondAttribute="bottom" constant="20" symbolic="YES" id="6eM-dF-BZI"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="Ti2-04-uMP" secondAttribute="leadingMargin" id="9t0-Ej-OEd"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="top" secondItem="5GZ-me-Dfx" secondAttribute="bottom" constant="8" symbolic="YES" id="BBg-90-Vr9"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="centerX" secondItem="EVT-o9-l30" secondAttribute="centerX" id="ENr-CA-WwP"/>
+                            <constraint firstItem="ejM-Et-qzw" firstAttribute="centerY" secondItem="kI1-ic-apY" secondAttribute="centerY" id="IGK-Yw-ZHk"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="ejM-Et-qzw" secondAttribute="leading" id="Mzp-yw-aYi"/>
+                            <constraint firstItem="WQ8-gS-Voh" firstAttribute="top" secondItem="Yqi-Nn-GLk" secondAttribute="bottom" constant="8" symbolic="YES" id="NRm-e2-ZrN"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="WQ8-gS-Voh" secondAttribute="leading" id="O7A-os-AVT"/>
+                            <constraint firstItem="Yqi-Nn-GLk" firstAttribute="top" secondItem="Rv3-Vq-kFD" secondAttribute="bottom" constant="8" symbolic="YES" id="RvZ-cL-4rm"/>
+                            <constraint firstItem="Rv3-Vq-kFD" firstAttribute="top" secondItem="BIP-35-CVP" secondAttribute="bottom" constant="8" symbolic="YES" id="WX7-bG-06M"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rv3-Vq-kFD" secondAttribute="trailing" constant="39" id="c0K-QZ-uYt"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="centerY" secondItem="EVT-o9-l30" secondAttribute="centerY" id="hO0-hj-GyI"/>
+                            <constraint firstItem="kI1-ic-apY" firstAttribute="leading" secondItem="ejM-Et-qzw" secondAttribute="trailing" constant="8" symbolic="YES" id="ld6-ro-jtm"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="trailing" secondItem="Yqi-Nn-GLk" secondAttribute="trailing" id="lfF-rg-eFw"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="trailing" secondItem="Ti2-04-uMP" secondAttribute="trailingMargin" id="nAX-yN-mtk"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="B6M-kQ-Dpb" secondAttribute="leading" id="u0u-RF-pRv"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="wiF-r4-782">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="qT7-qd-3u2">
@@ -94,6 +117,7 @@
                         <outlet property="currentWeatherSwitch" destination="WQ8-gS-Voh" id="MHs-OL-Y0P"/>
                         <outlet property="shareToTwitterSwitch" destination="ejM-Et-qzw" id="Z6A-eH-3fE"/>
                         <outlet property="sightingDetailsTextView" destination="Yqi-Nn-GLk" id="jM0-MR-WdR"/>
+                        <outlet property="sightingImageView" destination="BIP-35-CVP" id="dEB-1f-dbN"/>
                         <outlet property="sightingNameTextField" destination="Rv3-Vq-kFD" id="1fB-nJ-0VK"/>
                         <segue destination="5IH-0W-CG3" kind="show" id="zmi-nc-bhw"/>
                     </connections>
