@@ -10,10 +10,14 @@ import UIKit
 import ImagePicker
 import SwiftSpinner
 
+
 class AddSightingViewController: UIViewController, ImagePickerDelegate {
 
     // MARK: - Outlets
     
+
+    @IBOutlet weak var sightingImageView: UIImageView!
+
     @IBOutlet weak var sightingNameTextField: UITextField!
     @IBOutlet weak var sightingDetailsTextView: UITextView!
     @IBOutlet weak var currentWeatherSwitch: UISwitch!
