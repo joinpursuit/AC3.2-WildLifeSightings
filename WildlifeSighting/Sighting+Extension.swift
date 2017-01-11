@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 extension Sighting {
     
@@ -34,6 +35,10 @@ extension Sighting {
             return "Today"
         }
         return objectDateString
+    }
+    
+    var location: CLLocation {
+        return CLLocation(latitude: self.latitude, longitude: self.longitude)
     }
     
     
