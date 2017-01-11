@@ -30,6 +30,8 @@ class SightingDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setToolbarHidden(true, animated: false)
+
         updateLabels()
         self.automaticallyAdjustsScrollViewInsets = false
         //Looks for single or multiple taps.
@@ -65,8 +67,6 @@ class SightingDetailsViewController: UIViewController {
     }
     
     @IBAction func editSaveButtonPressed(_ sender: UIButton) {
-
-        
         
         if editSaveButton.titleLabel?.text == "Edit" {
 

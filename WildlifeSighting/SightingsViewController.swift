@@ -33,6 +33,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setToolbarHidden(true, animated: false)
         setDelegates()
         setUpTableView()
         initializeFetchedResultsController()
@@ -40,7 +41,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear")
+        navigationController?.setToolbarHidden(true, animated: false)
         setMapPins()
     }
     

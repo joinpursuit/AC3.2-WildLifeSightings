@@ -47,6 +47,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     // MARK: - View Did Load
     
     override func viewDidLoad() {
+        navigationController?.setToolbarHidden(true, animated: false)
         super.viewDidLoad()
         locationManager.delegate = self
         setupTextView()
@@ -133,6 +134,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         if let currentLocationInfo = currentLocation {
             newSightingObject.latitude = currentLocationInfo.coordinate.latitude
             newSightingObject.longitude = currentLocationInfo.coordinate.longitude
+        
         }
         if let image = sightingPhoto, let asset = image.imageAsset,
             let thumbData = UIImageJPEGRepresentation(image, 0.4),
@@ -212,9 +214,6 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("location updated")
         guard let validLocation: CLLocation = locations.last else { return }
-        let lat = "Lat: " + String(format: "Lat: %0.4f", validLocation.coordinate.latitude)
-        let long = String(format: "Long: %0.4f", validLocation.coordinate.longitude)
-        print(lat,", ", long)
         currentLocation = validLocation
         locationManager.stopUpdatingLocation()
     }
