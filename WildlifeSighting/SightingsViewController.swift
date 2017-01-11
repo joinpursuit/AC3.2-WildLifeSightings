@@ -109,11 +109,23 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         return sectionInfo.numberOfObjects
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let sections = fetchedResultsController.sections else {
+            fatalError("No sections in fetched results controller")
+        }
+        let sectionInfo = sections[section]
+        return sectionInfo.name
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SightingTableViewCell", for: indexPath) as! SightingTableViewCell
         let object = fetchedResultsController.object(at: indexPath)
         cell.sightingTitleLabel.text = object.name!
         cell.sightingDateAndTimeLabel.text = object.dateAndTime
+        
+        if let thumbData = object.thumbImageData as? Data {
+            cell.imageView?.image = UIImage(data: thumbData)
+        }
         return cell
     }
     
@@ -122,13 +134,15 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        switch editingStyle {
-//        case .delete:
-//            let object = fetchedResultsController.object(at: indexPath)
-//            mainContext.delete(object)
-//            try! mainContext.save()
-//        default: break
-//        }
+        if editingStyle == .delete {
+            let object = fetchedResultsController.object(at: indexPath)
+            mainContext.delete(object)
+            do {
+                try mainContext.save()
+            } catch let error {
+                fatalError("Failed to save context: \(error)")
+            }
+        }
     }
     
     //MARK: - NSFetchedResultsController Delegate Methods

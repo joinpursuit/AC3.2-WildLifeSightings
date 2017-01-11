@@ -36,30 +36,27 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         return locMan
     }()
     
-    let geocoder: CLGeocoder = CLGeocoder()
-    
     var mainContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
 
-
     
+    // MARK: - View Did Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
     }
     
+    
+    // MARK: - ImagePicker
+    
     @IBAction func takePhotoButtonPressed(_ sender: UIButton) {
         let imagePickerController = ImagePickerController()
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
-    
-
-    
-    
     
     
     @IBAction func saveBarButtonPressed(_ sender: UIBarButtonItem) {
@@ -78,6 +75,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
                     SwiftSpinner.hide()
                     DispatchQueue.main.async {
                         self.saveToCoreData()
+                        
                     }
                 }
             })
@@ -86,9 +84,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         }
     }
         
-        
-        
-        
+
     func saveToCoreData() {
         
         guard let sightingName = sightingNameTextField.text, sightingName.characters.count > 0 else {
@@ -111,8 +107,13 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
             newSightingObject.latitude = currentLocationInfo.coordinate.latitude
             newSightingObject.longitude = currentLocationInfo.coordinate.longitude
         }
-        if let image = sightingPhoto, let asset = image.imageAsset {
+        if let image = sightingPhoto, let asset = image.imageAsset,
+            let thumbData = UIImageJPEGRepresentation(image, 0.4),
+            let fullData = UIImageJPEGRepresentation(image, 1.0) {
+            
             newSightingObject.imageAssetURL = String(describing: asset)
+            newSightingObject.fullImageData = NSData(data: thumbData)
+            newSightingObject.thumbImageData = NSData(data: fullData)
         }
         do {
             try mainContext.save()
@@ -120,28 +121,21 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         catch let error {
             fatalError("Failed to save context: \(error)")
         }
-        let alert = UIAlertController(title: "Success", message: "Sighting Added Successfully", preferredStyle: .alert)
-        let okayAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
+        
+        showAlertWith(title: "Success", message: "Sighting Added Succesfully") { (_) in
             _ = self.navigationController?.popViewController(animated: true) }
-        alert.addAction(okayAction)
-        present(alert, animated: true, completion: nil)
     }
 
     
-    
-    
-    
-
-
-    // MARK: - Image Picker Delegate Methods
-    
-    func showAlertWith(title: String, message: String) {
+    func showAlertWith(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okayAction = UIAlertAction(title: "OK", style: .cancel)
+        let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: completion)
         alert.addAction(okayAction)
         present(alert, animated: true, completion: nil)
     }
     
+    
+    // MARK: - Image Picker Delegate Methods
     
     func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         print("wrapperDidPress")
@@ -149,20 +143,14 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         print("doneButtonPressed")
-        
         dismiss(animated: true, completion: nil)
-        print(images.count)
-        print(images)
+        guard images.count > 0 else { return }
         sightingPhoto = images[0]   
         sightingImageView.image = images[0]
-       
-        
-        dump(sightingImageView.image!)
     }
     
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
         print("cancel")
-        
         dismiss(animated: true, completion: nil)
     }
     
@@ -174,7 +162,6 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         case .authorizedAlways, .authorizedWhenInUse:
             print("all good")
             manager.startUpdatingLocation()
-        //            manager.startMonitoringSignificantLocationChanges()
         case .denied, .restricted:
             print("not good")
         case .notDetermined:
@@ -186,14 +173,12 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("location updated")
-        
         guard let validLocation: CLLocation = locations.last else { return }
         let lat = "Lat: " + String(format: "Lat: %0.4f", validLocation.coordinate.latitude)
         let long = String(format: "Long: %0.4f", validLocation.coordinate.longitude)
         print(lat,", ", long)
         currentLocation = validLocation
-    
-    
+        locationManager.stopUpdatingLocation()
     }
     
 }
