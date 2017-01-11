@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Add Sighting-->
         <scene sceneID="kUX-On-r4V">
             <objects>
                 <viewController id="aZF-oG-2AP" customClass="AddSightingViewController" customModule="WildlifeSighting" customModuleProvider="target" sceneMemberID="viewController">
@@ -23,59 +23,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqi-Nn-GLk">
-                                <rect key="frame" x="16" y="356" width="343" height="174"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" text="Image details:" translatesAutoresizingMaskIntoConstraints="NO" id="Yqi-Nn-GLk">
+                                <rect key="frame" x="16" y="379.5" width="343" height="201.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="174" id="LY6-dj-L96"/>
-                                </constraints>
-                                <string key="text">Add image details (this is an editable text view)  ..... When you click save, it also adds the current location and weather info for the current location and time</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WQ8-gS-Voh">
-                                <rect key="frame" x="16" y="538" width="51" height="31"/>
-                            </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6M-kQ-Dpb">
-                                <rect key="frame" x="16" y="577" width="51" height="31"/>
+                                <rect key="frame" x="16" y="589" width="51" height="31"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Include current weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUm-4q-Zfg">
-                                <rect key="frame" x="73" y="543" width="182" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include current location and weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SD-0I-RSF">
+                                <rect key="frame" x="73" y="594" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Include current location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SD-0I-RSF">
-                                <rect key="frame" x="73" y="582" width="181" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of Image (not optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rv3-Vq-kFD">
-                                <rect key="frame" x="16" y="318" width="304" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of Image (required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rv3-Vq-kFD">
+                                <rect key="frame" x="16" y="341.5" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejM-Et-qzw">
-                                <rect key="frame" x="16" y="616" width="51" height="31"/>
+                                <rect key="frame" x="16" y="628" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share to Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kI1-ic-apY">
-                                <rect key="frame" x="73" y="621" width="122" height="21"/>
+                                <rect key="frame" x="73" y="633" width="122" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BIP-35-CVP">
-                                <rect key="frame" x="16" y="72" width="343" height="238"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="238" id="bun-Hw-qu6"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="72" width="343" height="261.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVT-o9-l30">
-                                <rect key="frame" x="149" y="176" width="77" height="30"/>
+                                <rect key="frame" x="149" y="188" width="77" height="30"/>
                                 <state key="normal" title="Take photo"/>
                                 <connections>
                                     <action selector="takePhotoButtonPressed:" destination="aZF-oG-2AP" eventType="touchUpInside" id="age-xT-wlC"/>
@@ -84,28 +66,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ejM-Et-qzw" firstAttribute="top" secondItem="B6M-kQ-Dpb" secondAttribute="bottom" constant="8" symbolic="YES" id="1dz-xk-cPE"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="Yqi-Nn-GLk" secondAttribute="leading" id="2VS-sF-Eza"/>
-                            <constraint firstItem="Rv3-Vq-kFD" firstAttribute="leading" secondItem="Yqi-Nn-GLk" secondAttribute="leading" id="5IQ-ju-suB"/>
-                            <constraint firstAttribute="bottom" secondItem="ejM-Et-qzw" secondAttribute="bottom" constant="20" symbolic="YES" id="6eM-dF-BZI"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="Ti2-04-uMP" secondAttribute="leadingMargin" id="9t0-Ej-OEd"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="top" secondItem="5GZ-me-Dfx" secondAttribute="bottom" constant="8" symbolic="YES" id="BBg-90-Vr9"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="centerX" secondItem="EVT-o9-l30" secondAttribute="centerX" id="ENr-CA-WwP"/>
-                            <constraint firstItem="ejM-Et-qzw" firstAttribute="centerY" secondItem="kI1-ic-apY" secondAttribute="centerY" id="IGK-Yw-ZHk"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="ejM-Et-qzw" secondAttribute="leading" id="Mzp-yw-aYi"/>
-                            <constraint firstItem="WQ8-gS-Voh" firstAttribute="top" secondItem="Yqi-Nn-GLk" secondAttribute="bottom" constant="8" symbolic="YES" id="NRm-e2-ZrN"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="WQ8-gS-Voh" secondAttribute="leading" id="O7A-os-AVT"/>
-                            <constraint firstItem="Yqi-Nn-GLk" firstAttribute="top" secondItem="Rv3-Vq-kFD" secondAttribute="bottom" constant="8" symbolic="YES" id="RvZ-cL-4rm"/>
-                            <constraint firstItem="Rv3-Vq-kFD" firstAttribute="top" secondItem="BIP-35-CVP" secondAttribute="bottom" constant="8" symbolic="YES" id="WX7-bG-06M"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Rv3-Vq-kFD" secondAttribute="trailing" constant="39" id="c0K-QZ-uYt"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="centerY" secondItem="EVT-o9-l30" secondAttribute="centerY" id="hO0-hj-GyI"/>
-                            <constraint firstItem="kI1-ic-apY" firstAttribute="leading" secondItem="ejM-Et-qzw" secondAttribute="trailing" constant="8" symbolic="YES" id="ld6-ro-jtm"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="trailing" secondItem="Yqi-Nn-GLk" secondAttribute="trailing" id="lfF-rg-eFw"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="trailing" secondItem="Ti2-04-uMP" secondAttribute="trailingMargin" id="nAX-yN-mtk"/>
-                            <constraint firstItem="BIP-35-CVP" firstAttribute="leading" secondItem="B6M-kQ-Dpb" secondAttribute="leading" id="u0u-RF-pRv"/>
+                            <constraint firstItem="Rv3-Vq-kFD" firstAttribute="top" secondItem="BIP-35-CVP" secondAttribute="bottom" constant="8" symbolic="YES" id="8gP-kc-fXS"/>
+                            <constraint firstItem="kI1-ic-apY" firstAttribute="leading" secondItem="ejM-Et-qzw" secondAttribute="trailing" constant="8" symbolic="YES" id="9yF-ta-7PJ"/>
+                            <constraint firstItem="9SD-0I-RSF" firstAttribute="leading" secondItem="B6M-kQ-Dpb" secondAttribute="trailing" constant="8" symbolic="YES" id="AtQ-Va-F3T"/>
+                            <constraint firstItem="48P-WW-TSF" firstAttribute="top" secondItem="ejM-Et-qzw" secondAttribute="bottom" constant="8" symbolic="YES" id="Bkm-CY-ZUj"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ejM-Et-qzw" secondAttribute="leading" id="ETG-TC-rzg"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="B6M-kQ-Dpb" secondAttribute="leading" id="KWz-0P-pQx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rv3-Vq-kFD" secondAttribute="trailing" id="Kty-i1-u2y"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="bottom" secondItem="Ti2-04-uMP" secondAttribute="centerY" id="ToI-bl-oaQ"/>
+                            <constraint firstItem="9SD-0I-RSF" firstAttribute="centerY" secondItem="B6M-kQ-Dpb" secondAttribute="centerY" id="bjq-5b-acq"/>
+                            <constraint firstItem="BIP-35-CVP" firstAttribute="top" secondItem="5GZ-me-Dfx" secondAttribute="bottom" constant="8" symbolic="YES" id="fP5-IJ-qUc"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Rv3-Vq-kFD" secondAttribute="leading" id="fpO-3K-0m2"/>
+                            <constraint firstItem="Yqi-Nn-GLk" firstAttribute="top" secondItem="Rv3-Vq-kFD" secondAttribute="bottom" constant="8" symbolic="YES" id="g0U-sv-Cdy"/>
+                            <constraint firstItem="EVT-o9-l30" firstAttribute="centerX" secondItem="BIP-35-CVP" secondAttribute="centerX" id="gXg-yg-Biq"/>
+                            <constraint firstItem="B6M-kQ-Dpb" firstAttribute="top" secondItem="Yqi-Nn-GLk" secondAttribute="bottom" constant="8" symbolic="YES" id="hD3-29-hvH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BIP-35-CVP" secondAttribute="trailing" id="lgH-1O-gfl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yqi-Nn-GLk" secondAttribute="trailing" id="mqf-9d-pMM"/>
+                            <constraint firstItem="kI1-ic-apY" firstAttribute="centerY" secondItem="ejM-Et-qzw" secondAttribute="centerY" id="nB5-eW-wQa"/>
+                            <constraint firstItem="EVT-o9-l30" firstAttribute="centerY" secondItem="BIP-35-CVP" secondAttribute="centerY" id="rVb-KT-D9G"/>
+                            <constraint firstItem="ejM-Et-qzw" firstAttribute="top" secondItem="B6M-kQ-Dpb" secondAttribute="bottom" constant="8" symbolic="YES" id="uYD-U1-9n0"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="BIP-35-CVP" secondAttribute="leading" id="wDr-AS-3eD"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Yqi-Nn-GLk" secondAttribute="leading" id="wFu-5k-gmC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="wiF-r4-782">
+                    <navigationItem key="navigationItem" title="Add Sighting" id="wiF-r4-782">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="qT7-qd-3u2">
                             <connections>
                                 <action selector="saveBarButtonPressed:" destination="aZF-oG-2AP" id="0wc-ET-0BS"/>
@@ -114,7 +98,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentLocationSwitch" destination="B6M-kQ-Dpb" id="0OT-IE-0Ss"/>
-                        <outlet property="currentWeatherSwitch" destination="WQ8-gS-Voh" id="MHs-OL-Y0P"/>
                         <outlet property="shareToTwitterSwitch" destination="ejM-Et-qzw" id="Z6A-eH-3fE"/>
                         <outlet property="sightingDetailsTextView" destination="Yqi-Nn-GLk" id="jM0-MR-WdR"/>
                         <outlet property="sightingImageView" destination="BIP-35-CVP" id="dEB-1f-dbN"/>
@@ -176,7 +159,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bL6-kX-TaP">
-                                <rect key="frame" x="16" y="20" width="343" height="313.5"/>
+                                <rect key="frame" x="16" y="64" width="343" height="269.5"/>
                             </imageView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y5v-RC-I3p">
                                 <rect key="frame" x="16" y="341.5" width="295" height="30"/>
@@ -304,6 +287,7 @@
                         <outlet property="mapView" destination="JVB-ax-Rp6" id="29a-Sh-wg6"/>
                         <outlet property="tableView" destination="Mrn-Gs-D8s" id="VhZ-JQ-vpH"/>
                         <outlet property="tableViewBottomLayoutConstraint" destination="eZD-Va-ltL" id="S0H-tv-7uR"/>
+                        <segue destination="UPM-QC-Rs3" kind="show" identifier="SegueToDetailsVC" id="HfO-SL-sPA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wps-Ch-KIh" userLabel="First Responder" sceneMemberID="firstResponder"/>

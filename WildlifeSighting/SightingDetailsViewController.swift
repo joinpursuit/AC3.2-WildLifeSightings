@@ -19,8 +19,6 @@ class SightingDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TO DO - VISION
-        // titleTextField is hidden until edit button is pressed
     }
     @IBAction func editSaveButtonPressed(_ sender: UIButton) {
         if editSaveButton.titleLabel?.text == "Edit" {

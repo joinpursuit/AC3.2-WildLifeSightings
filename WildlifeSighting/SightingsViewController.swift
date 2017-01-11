@@ -130,11 +130,6 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
 //        default: break
 //        }
     }
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        <#code#>
-//    }
-    
     
     //MARK: - NSFetchedResultsController Delegate Methods
     
