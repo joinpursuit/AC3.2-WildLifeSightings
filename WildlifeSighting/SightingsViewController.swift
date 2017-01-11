@@ -185,7 +185,6 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         let object = fetchedResultsController.object(at: indexPath)
         let validLocation = CLLocation(latitude: object.latitude, longitude: object.longitude)
         mapView.setRegion(MKCoordinateRegionMakeWithDistance(validLocation.coordinate, 5000.0, 5000.0), animated: true)
-        mapView.setCenter(validLocation.coordinate, animated: true)
         for annotaion in mapView.annotations {
             if let myAnnotaion = annotaion as? SightingMKPointAnnotation {
                 if myAnnotaion.managedObject == object {
@@ -242,10 +241,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
                 let superview = button.superview,
                 let cell = superview.superview as? SightingTableViewCell else { return }
             let indexPath = tableView.indexPath(for: cell)
-            // SOURCE: http://stackoverflow.com/questions/28659845/swift-how-to-get-the-indexpath-row-when-a-button-in-a-cell-is-tapped
-//            destination.sighting = fetchedResultsController.object(at: indexPath!).objectID
-            destination.sighting = fetchedResultsController.object(at: indexPath!)
-
+            destination.sightingID = fetchedResultsController.object(at: indexPath!).objectID
             destination.sightingIndexPath = indexPath
         }
     }

@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class SightingDetailsViewController: UIViewController {
 
-    var sighting: Sighting!
+    var sightingID: NSManagedObjectID!
     var sightingIndexPath: IndexPath!
     
     @IBOutlet weak var imageDetailsLabel: UILabel!
@@ -21,12 +22,10 @@ class SightingDetailsViewController: UIViewController {
     @IBOutlet weak var detailsTextView: UITextView!
     @IBOutlet weak var dateWeatherLocationTextView: UITextView!
     
-//    var mainContext: NSManagedObjectContext {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        return appDelegate.persistentContainer.viewContext
-//    }
-    
-    //let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var mainContext: NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
 
     
     override func viewDidLoad() {
@@ -36,6 +35,7 @@ class SightingDetailsViewController: UIViewController {
     
     
     func updateLabels() {
+        let sighting: Sighting = mainContext.object(with: sightingID) as! Sighting
         titleLabel.text = sighting.name!
         
         detailsTextView.text = sighting.details ?? ""
@@ -76,62 +76,43 @@ class SightingDetailsViewController: UIViewController {
             titleLabel.text = titleTextField.text
             editSaveButton.setTitle("Edit", for: .normal)
             detailsTextView.layer.borderColor = UIColor.clear.withAlphaComponent(0.0).cgColor
+            saveEditToCoreData()
         }
     }
     
-    func saveToCoreData() {
+    func saveEditToCoreData() {
+        guard let sightingName = titleTextField.text, sightingName.characters.count > 0 else {
+            showAlertWith(title: "No Name", message: "Please make sure you've entered a name for this sighting.")
+            return
+        }
+        guard let sightingDetail = detailsTextView.text, sightingDetail.characters.count > 0 else {
+            showAlertWith(title: "No Details", message: "Please make sure you've entered details for this sighting.")
+            return
+        }
         
-//        let predicate = NSPredicate(format: "objectID == %@", objectIDFromNSManagedObject)
-//        
-//        let fetchRequest = NSFetchRequest(entityName: "Sighting")
-//        fetchRequest.predicate = predicate
-//        
-//        do {
-//            let fetchedEntities = try mainContext.executeFetchRequest(fetchRequest) as! [MyEntity]
-//            fetchedEntities.first?.FirstPropertyToUpdate = NewValue
-//            fetchedEntities.first?.SecondPropertyToUpdate = NewValue
-//            // ... Update additional properties with new values
-//        } catch {
-//            // Do something in response to error condition
-//        }
-//        
-//        do {
-//            try self.mainObjectContext.save()
-//        } catch {
-//            // Do something in response to error condition
-//        }
+        let sighting = mainContext.object(with: sightingID) as! Sighting
+        sighting.name = sightingName
+        sighting.details = sightingDetail
         
-//        
-//        
-//        let newSightingObject = Sighting(context: mainContext)
-//        newSightingObject.name = sightingName
-//        newSightingObject.details = sightingDetail
-//        newSightingObject.date = NSDate()
-//        if let currentWeatherInfo = currentWeather {
-//            newSightingObject.temperature = currentWeatherInfo.temp
-//            newSightingObject.weatherDescription = currentWeatherInfo.summary
-//        }
-//        if let currentLocationInfo = currentLocation {
-//            newSightingObject.latitude = currentLocationInfo.coordinate.latitude
-//            newSightingObject.longitude = currentLocationInfo.coordinate.longitude
-//        }
-//        if let image = sightingPhoto, let asset = image.imageAsset,
-//            let thumbData = UIImageJPEGRepresentation(image, 0.4),
-//            let fullData = UIImageJPEGRepresentation(image, 1.0) {
-//            
-//            newSightingObject.imageAssetURL = String(describing: asset)
-//            newSightingObject.fullImageData = NSData(data: thumbData)
-//            newSightingObject.thumbImageData = NSData(data: fullData)
-//        }
-//        do {
-//            try mainContext.save()
-//        }
-//        catch let error {
-//            fatalError("Failed to save context: \(error)")
-//        }
-//        
-//        showAlertWith(title: "Success", message: "Sighting Added Succesfully") { (_) in
-//            _ = self.navigationController?.popViewController(animated: true) }
+        do {
+            try mainContext.save()
+        }
+        catch let error {
+            fatalError("Failed to save context: \(error)")
+        }
+        
+        showAlertWith(title: "Success", message: "Sighting Edited Succesfully") { (_) in
+            _ = self.navigationController?.popViewController(animated: true) }
+
     }
+    
+    
+    func showAlertWith(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: completion)
+        alert.addAction(okayAction)
+        present(alert, animated: true, completion: nil)
+    }
+
     
 }
