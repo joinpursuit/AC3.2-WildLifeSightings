@@ -21,12 +21,29 @@ class SightingDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateLabels()
+    }
+    
+    func updateLabels() {
         titleLabel.text = sighting.name!
         detailsTextView.text = sighting.details ?? ""
         if let image = sighting.fullImageData as? Data {
             sightingImageView.image = UIImage(data: image)
         }
-        //TODO : fill in the rest
+        var dateWeatherText = ""
+        dateWeatherText += sighting.dateString
+        dateWeatherText += "\n" + sighting.time
+        
+        if sighting.latitude != 0 && sighting.longitude != 0 {
+            dateWeatherText += "\nLatitude:" + String(sighting.latitude)
+            dateWeatherText += "\nLongitude:" + String(sighting.longitude)
+            //TODO: Get Placemark
+        }
+        
+        if let weather = sighting.weatherDescription, weather != "" {
+            dateWeatherText += "\nWeather:" + weather
+        }
+        dateWeatherLocationTextView.text = dateWeatherText
     }
     
     @IBAction func editSaveButtonPressed(_ sender: UIButton) {
