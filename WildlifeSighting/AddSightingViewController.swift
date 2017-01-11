@@ -13,10 +13,11 @@ import CoreLocation
 import CoreData
 
 
-class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocationManagerDelegate {
+class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocationManagerDelegate, UITextViewDelegate {
 
     // MARK: - Outlets
 
+    @IBOutlet weak var addDetailsLabel: UILabel!
     @IBOutlet weak var sightingImageView: UIImageView!
     @IBOutlet weak var sightingNameTextField: UITextField!
     @IBOutlet weak var sightingDetailsTextView: UITextView!
@@ -47,6 +48,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
+        setupTextView()
     }
     
     
@@ -179,6 +181,20 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         print(lat,", ", long)
         currentLocation = validLocation
         locationManager.stopUpdatingLocation()
+    }
+    
+    // MARK: - TextView setup
+    
+    func setupTextView() {
+        let borderColor = UIColor(red: 215.0 / 255.0, green: 215.0 / 255.0, blue: 215.0 / 255.0, alpha: 1)
+        sightingDetailsTextView.layer.borderColor = borderColor.cgColor
+        sightingDetailsTextView.layer.borderWidth = 0.6;
+        sightingDetailsTextView.layer.cornerRadius = 6.0;
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        addDetailsLabel.isHidden = true
+        return
     }
     
 }
