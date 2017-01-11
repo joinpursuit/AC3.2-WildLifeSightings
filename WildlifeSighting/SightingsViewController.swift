@@ -185,7 +185,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         let object = fetchedResultsController.object(at: indexPath)
         let validLocation = CLLocation(latitude: object.latitude, longitude: object.longitude)
         mapView.setRegion(MKCoordinateRegionMakeWithDistance(validLocation.coordinate, 5000.0, 5000.0), animated: true)
-        mapView.setCenter(validLocation.coordinate, animated: true)
+
         for annotaion in mapView.annotations {
             if let myAnnotaion = annotaion as? SightingMKPointAnnotation {
                 if myAnnotaion.managedObject == object {
