@@ -19,6 +19,7 @@
 		4B36736A1E240CA40069967C /* SightingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3673691E240CA40069967C /* SightingDetailsViewController.swift */; };
 		4B9ACB481E24303600F2A93E /* TwitterWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9ACB471E24303600F2A93E /* TwitterWebViewController.swift */; };
 		87B0461066CCE6E88D780705 /* Pods_WildlifeSighting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9276D9B7068E60F130EC3CF3 /* Pods_WildlifeSighting.framework */; };
+		9E7A5ACC1E268D8A0097EF95 /* Fieldbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A5ACB1E268D8A0097EF95 /* Fieldbook.swift */; };
 		9E9DF20E1E25511F00F69C6F /* DarkSkiesWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9DF20D1E25511F00F69C6F /* DarkSkiesWeather.swift */; };
 		9E9DF2101E25516800F69C6F /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9DF20F1E25516800F69C6F /* APIRequestManager.swift */; };
 		DE640AE21E2445A2009D056D /* Sighting+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE640AE11E2445A2009D056D /* Sighting+Extension.swift */; };
@@ -42,6 +43,7 @@
 		4B9ACB471E24303600F2A93E /* TwitterWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterWebViewController.swift; sourceTree = "<group>"; };
 		63643D13A53EDB24BC35CBE6 /* Pods-WildlifeSighting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WildlifeSighting.release.xcconfig"; path = "Pods/Target Support Files/Pods-WildlifeSighting/Pods-WildlifeSighting.release.xcconfig"; sourceTree = "<group>"; };
 		9276D9B7068E60F130EC3CF3 /* Pods_WildlifeSighting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WildlifeSighting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E7A5ACB1E268D8A0097EF95 /* Fieldbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fieldbook.swift; sourceTree = "<group>"; };
 		9E9DF20D1E25511F00F69C6F /* DarkSkiesWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkSkiesWeather.swift; sourceTree = "<group>"; };
 		9E9DF20F1E25516800F69C6F /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
 		DE640AE11E2445A2009D056D /* Sighting+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sighting+Extension.swift"; sourceTree = "<group>"; };
@@ -139,10 +141,11 @@
 		DE97AFBA1E254465009BD661 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DE640AE11E2445A2009D056D /* Sighting+Extension.swift */,
-				4B36734F1E240A870069967C /* WildlifeSighting.xcdatamodeld */,
 				9E9DF20D1E25511F00F69C6F /* DarkSkiesWeather.swift */,
 				DEDE68411E266A7F00A8373A /* mapPin.swift */,
+				DE640AE11E2445A2009D056D /* Sighting+Extension.swift */,
+				4B36734F1E240A870069967C /* WildlifeSighting.xcdatamodeld */,
+				9E7A5ACB1E268D8A0097EF95 /* Fieldbook.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				4B36736A1E240CA40069967C /* SightingDetailsViewController.swift in Sources */,
 				9E9DF20E1E25511F00F69C6F /* DarkSkiesWeather.swift in Sources */,
 				4B9ACB481E24303600F2A93E /* TwitterWebViewController.swift in Sources */,
+				9E7A5ACC1E268D8A0097EF95 /* Fieldbook.swift in Sources */,
 				4B36735E1E240AF50069967C /* SightingsViewController.swift in Sources */,
 				4B3673651E240C290069967C /* SightingTableViewCell.swift in Sources */,
 			);
