@@ -29,7 +29,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     var fetchedResultsController: NSFetchedResultsController<Sighting>!
 
-    
+    var pins: [mapPin] = []
     
     // MARK: - viewDidLoad and setUp
     
@@ -38,6 +38,8 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         setDelegates()
         setUpTableView()
         initializeFetchedResultsController()
+//        setMapPins()
+        print(pins)
     }
     
     func setUpTableView() {
@@ -52,6 +54,12 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         mapView.delegate = self
     }
     
+//    func setMapPins() {
+//        if let sightings = fetchedResultsController.fetchedObjects {
+//            sightings.map { pins.append(mapPin }
+//        }
+//        
+//    }
     
     
     
@@ -90,6 +98,14 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
     }
+    
+    
+    
+    // MARK: - mapView delegate methods
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print(view.annotation?.title ?? "couldn't unwrap title of annotaion")
+    }
 
     
     
@@ -126,7 +142,22 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if let thumbData = object.thumbImageData as? Data {
             cell.sightingImageView?.image = UIImage(data: thumbData)
+        } else {
+            cell.sightingImageView.image = #imageLiteral(resourceName: "noImage")
         }
+        pins.append(mapPin(indexPath: indexPath, location: CLLocation(latitude: object.latitude, longitude: object.longitude)))
+        let validLocation = CLLocation(latitude: object.latitude, longitude: object.longitude)
+        
+//        mapView.setRegion(MKCoordinateRegionMakeWithDistance(validLocation.coordinate, 2000.0, 2000.0), animated: true)
+//        mapView.setCenter(validLocation.coordinate, animated: true)
+
+        let pinAnnotation = MKPointAnnotation()
+        pinAnnotation.title = object.name
+        pinAnnotation.subtitle = object.dateAndTime
+        pinAnnotation.coordinate = validLocation.coordinate
+        mapView.addAnnotation(pinAnnotation)
+            
+        print("long: ", object.longitude, "lat: ", object.latitude)
         return cell
     }
     
@@ -145,6 +176,13 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
                 fatalError("Failed to save context: \(error)")
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let object = fetchedResultsController.object(at: indexPath)
+        let validLocation = CLLocation(latitude: object.latitude, longitude: object.longitude)
+        mapView.setRegion(MKCoordinateRegionMakeWithDistance(validLocation.coordinate, 2000.0, 2000.0), animated: true)
+        mapView.setCenter(validLocation.coordinate, animated: true)
     }
     
     //MARK: - NSFetchedResultsController Delegate Methods
