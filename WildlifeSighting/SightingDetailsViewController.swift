@@ -32,6 +32,7 @@ class SightingDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLabels()
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     
@@ -43,23 +44,25 @@ class SightingDetailsViewController: UIViewController {
             sightingImageView.image = UIImage(data: image)
         }
         var dateWeatherText = ""
-        dateWeatherText += sighting.dateString
-        dateWeatherText += "\n" + sighting.time
-        
+        dateWeatherText += sighting.dateAndTime
         if sighting.latitude != 0 && sighting.longitude != 0 {
-            dateWeatherText += "\nLatitude:" + String(sighting.latitude)
-            dateWeatherText += "\nLongitude:" + String(sighting.longitude)
+            dateWeatherText += "\nLatitude: " + String(sighting.latitude)
+            dateWeatherText += "\nLongitude: " + String(sighting.longitude)
             //TODO: Get Placemark
         }
         
         if let weather = sighting.weatherDescription, weather != "" {
-            dateWeatherText += "\nWeather:" + weather
+            dateWeatherText += "\nWeather: " + weather
         }
         dateWeatherLocationTextView.text = dateWeatherText
     }
     
     @IBAction func editSaveButtonPressed(_ sender: UIButton) {
+
+        
+        
         if editSaveButton.titleLabel?.text == "Edit" {
+
             titleLabel.isHidden = true
             titleTextField.isHidden = false
             detailsTextView.isEditable = true
@@ -70,6 +73,14 @@ class SightingDetailsViewController: UIViewController {
             detailsTextView.layer.cornerRadius = 6.0;
             editSaveButton.setTitle("Save", for: .normal)
         } else {
+            guard let sightingName = titleTextField.text, sightingName.characters.count > 0 else {
+                showAlertWith(title: "No Name", message: "Please make sure you've entered a name for this sighting.")
+                return
+            }
+            guard let sightingDetail = detailsTextView.text, sightingDetail.characters.count > 0 else {
+                showAlertWith(title: "No Details", message: "Please make sure you've entered details for this sighting.")
+                return
+            }
             titleTextField.isHidden = true
             titleLabel.isHidden = false
             detailsTextView.isEditable = false
@@ -77,6 +88,13 @@ class SightingDetailsViewController: UIViewController {
             editSaveButton.setTitle("Edit", for: .normal)
             detailsTextView.layer.borderColor = UIColor.clear.withAlphaComponent(0.0).cgColor
         }
+    }
+    
+    func showAlertWith(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: completion)
+        alert.addAction(okayAction)
+        present(alert, animated: true, completion: nil)
     }
     
     func saveToCoreData() {
