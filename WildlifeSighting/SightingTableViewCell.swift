@@ -10,9 +10,10 @@ import UIKit
 
 class SightingTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var SightingImageView: UIImageView!
+    @IBOutlet weak var sightingImageView: UIImageView!
     @IBOutlet weak var sightingTitleLabel: UILabel!
     @IBOutlet weak var sightingDateAndTimeLabel: UILabel!
+    @IBOutlet weak var infoButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,8 +23,5 @@ class SightingTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    @IBAction func showDetailsButtonPressed(_ sender: UIButton) {
     }
 }

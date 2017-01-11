@@ -16,16 +16,12 @@ import CoreData
 class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocationManagerDelegate {
 
     // MARK: - Outlets
-    
 
     @IBOutlet weak var sightingImageView: UIImageView!
-
     @IBOutlet weak var sightingNameTextField: UITextField!
     @IBOutlet weak var sightingDetailsTextView: UITextView!
-    @IBOutlet weak var currentWeatherSwitch: UISwitch!
     @IBOutlet weak var currentLocationSwitch: UISwitch!
     @IBOutlet weak var shareToTwitterSwitch: UISwitch!
-    
     
     // MARK: - Preperties
     
@@ -70,7 +66,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         
         // this is an async call and wont be finished before the function returns. #PROBLEM
         // fixed this problem by calling saveToCoreData() in completion handler
-        if let validCurrentLocation = currentLocation, currentWeatherSwitch.isOn {
+        if let validCurrentLocation = currentLocation, currentLocationSwitch.isOn {
             let lat = validCurrentLocation.coordinate.latitude
             let long = validCurrentLocation.coordinate.longitude
             
