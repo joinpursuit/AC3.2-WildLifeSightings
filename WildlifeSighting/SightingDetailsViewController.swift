@@ -32,10 +32,6 @@ class SightingDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLabels()
-        let borderColor = UIColor(red: 215.0 / 255.0, green: 215.0 / 255.0, blue: 215.0 / 255.0, alpha: 1)
-        detailsTextView.layer.borderColor = borderColor.cgColor
-        detailsTextView.layer.borderWidth = 0.6;
-        detailsTextView.layer.cornerRadius = 6.0;
     }
     
     
@@ -68,6 +64,10 @@ class SightingDetailsViewController: UIViewController {
             titleTextField.isHidden = false
             detailsTextView.isEditable = true
             titleTextField.text = titleLabel.text
+            let borderColor = UIColor(red: 215.0 / 255.0, green: 215.0 / 255.0, blue: 215.0 / 255.0, alpha: 1)
+            detailsTextView.layer.borderColor = borderColor.cgColor
+            detailsTextView.layer.borderWidth = 0.6;
+            detailsTextView.layer.cornerRadius = 6.0;
             editSaveButton.setTitle("Save", for: .normal)
         } else {
             titleTextField.isHidden = true
@@ -75,7 +75,7 @@ class SightingDetailsViewController: UIViewController {
             detailsTextView.isEditable = false
             titleLabel.text = titleTextField.text
             editSaveButton.setTitle("Edit", for: .normal)
-
+            detailsTextView.layer.borderColor = UIColor.clear.withAlphaComponent(0.0).cgColor
         }
     }
     

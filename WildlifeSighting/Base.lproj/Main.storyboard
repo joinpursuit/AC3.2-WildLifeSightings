@@ -28,6 +28,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aZF-oG-2AP" id="H1I-PN-JEa"/>
+                                </connections>
                             </textView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6M-kQ-Dpb">
                                 <rect key="frame" x="16" y="589" width="51" height="31"/>
@@ -111,6 +114,7 @@
                         <outlet property="sightingDetailsTextView" destination="Yqi-Nn-GLk" id="jM0-MR-WdR"/>
                         <outlet property="sightingImageView" destination="BIP-35-CVP" id="dEB-1f-dbN"/>
                         <outlet property="sightingNameTextField" destination="Rv3-Vq-kFD" id="1fB-nJ-0VK"/>
+                        <outlet property="takePhotoButton" destination="EVT-o9-l30" id="xTB-zS-I3k"/>
                         <segue destination="5IH-0W-CG3" kind="show" id="zmi-nc-bhw"/>
                     </connections>
                 </viewController>
