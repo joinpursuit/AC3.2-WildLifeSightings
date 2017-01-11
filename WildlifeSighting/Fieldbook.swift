@@ -83,7 +83,7 @@ class Fieldbook {
         return sightingsToReturn
     }
     
-    static func postSighting(_ name: String, date: String, weather: String, lat: Double, long: Double, details: String) {
+    static func postSighting(name: String, date: String, weather: String = "N/A", lat: Double = 0.0, long: Double = 0.0, details: String) {
         
         let sightingEntry: [String : Any] = [
             "name" : name,
@@ -97,7 +97,7 @@ class Fieldbook {
         APIRequestManager.manager.postRequest(endPoint: "https://api.fieldbook.com/v1/58757bb45de269040063ab78/sightings", data: sightingEntry)
     }
     
-    static func patchOrDeleteSighting(_ id: Int, name: String, date: String, weather: String, lat: Double, long: Double, details: String, method: String = "PATCH") {
+    static func patchOrDeleteSighting(id: Int, name: String, date: String, weather: String, lat: Double, long: Double, details: String, method: String = "PATCH") {
         
         let sightingEntry: [String : Any] = [
             "name" : name,

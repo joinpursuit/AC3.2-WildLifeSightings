@@ -14,9 +14,9 @@ import CoreData
 
 
 class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocationManagerDelegate, UITextViewDelegate {
-
+    
     // MARK: - Outlets
-
+    
     @IBOutlet weak var addDetailsLabel: UILabel!
     @IBOutlet weak var sightingImageView: UIImageView!
     @IBOutlet weak var sightingNameTextField: UITextField!
@@ -42,7 +42,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
-
+    
     
     // MARK: - View Did Load
     
@@ -50,6 +50,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         super.viewDidLoad()
         locationManager.delegate = self
         setupTextView()
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     
@@ -87,8 +88,8 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
             saveToCoreData()
         }
     }
-        
-
+    
+    
     func saveToCoreData() {
         
         guard let sightingName = sightingNameTextField.text, sightingName.characters.count > 0 else {
@@ -126,10 +127,21 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
             fatalError("Failed to save context: \(error)")
         }
         
+        // Save Data to Fieldbook
+        if shareToTwitterSwitch.isOn && currentLocationSwitch.isOn {
+            
+            Fieldbook.postSighting(name: newSightingObject.name!, date: returnDate(), weather: newSightingObject.weatherDescription!, lat: newSightingObject.latitude, long: newSightingObject.longitude, details: newSightingObject.details!)
+        }
+        
+        if shareToTwitterSwitch.isOn && !currentLocationSwitch.isOn {
+            
+            Fieldbook.postSighting(name: newSightingObject.name!, date: returnDate(), details: newSightingObject.details!)
+        }
+        
         showAlertWith(title: "Success", message: "Sighting Added Succesfully") { (_) in
             _ = self.navigationController?.popViewController(animated: true) }
     }
-
+    
     
     func showAlertWith(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -149,7 +161,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         print("doneButtonPressed")
         dismiss(animated: true, completion: nil)
         guard images.count > 0 else { return }
-        sightingPhoto = images[0]   
+        sightingPhoto = images[0]
         sightingImageView.image = images[0]
     }
     
@@ -158,7 +170,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         dismiss(animated: true, completion: nil)
     }
     
-
+    
     // MARK: - CoreLocation Delegate Methods
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -198,6 +210,20 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     func textViewDidBeginEditing(_ textView: UITextView) {
         addDetailsLabel.isHidden = true
         return
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        if sightingDetailsTextView.text.isEmpty || sightingDetailsTextView.text == "" {
+            addDetailsLabel.isHidden = false
+        }
+        return true
+    }
+    
+    func returnDate() -> String {
+        let rightNow =  NSDate() as Date
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "MM/dd/yyyy"
+        return dateformatter.string(from: rightNow)
     }
     
 }
