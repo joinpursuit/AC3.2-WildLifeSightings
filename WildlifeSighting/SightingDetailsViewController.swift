@@ -20,6 +20,7 @@ class SightingDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     @IBAction func editSaveButtonPressed(_ sender: UIButton) {
         if editSaveButton.titleLabel?.text == "Edit" {
             titleLabel.isHidden = true
