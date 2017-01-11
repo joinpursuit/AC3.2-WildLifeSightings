@@ -32,6 +32,13 @@ class SightingDetailsViewController: UIViewController {
         super.viewDidLoad()
         updateLabels()
         self.automaticallyAdjustsScrollViewInsets = false
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SightingDetailsViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
     }
     
     
@@ -124,5 +131,10 @@ class SightingDetailsViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
     
 }

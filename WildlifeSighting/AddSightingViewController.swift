@@ -24,7 +24,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     @IBOutlet weak var currentLocationSwitch: UISwitch!
     @IBOutlet weak var shareToTwitterSwitch: UISwitch!
     @IBOutlet weak var takePhotoButton: UIButton!
-    
+    @IBOutlet weak var photoBottomConstraint: NSLayoutConstraint!
     // MARK: - Preperties
     
     var sightingPhoto: UIImage?
@@ -51,16 +51,38 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         locationManager.delegate = self
         setupTextView()
         self.automaticallyAdjustsScrollViewInsets = false
+
+        sightingImageView.isHidden = true
+        photoBottomConstraint.isActive = false
+        photoBottomConstraint =
+            sightingImageView.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
+//            takePhotoButton.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
+        photoBottomConstraint.isActive = true
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddSightingViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+ 
     }
-    
-    
+ 
+ 
     // MARK: - ImagePicker
     
     @IBAction func takePhotoButtonPressed(_ sender: UIButton) {
         let imagePickerController = ImagePickerController()
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
-        takePhotoButton.isHidden = true
+
+        sightingImageView.isHidden = false
+        photoBottomConstraint.isActive = false
+        photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 8.0)
+        photoBottomConstraint.isActive = true
+
+        takePhotoButton.setTitle("Retake Photo", for: .normal)
     }
     
     
@@ -219,6 +241,11 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         return true
     }
     
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+
     func returnDate() -> String {
         let rightNow =  NSDate() as Date
         let dateformatter = DateFormatter()
