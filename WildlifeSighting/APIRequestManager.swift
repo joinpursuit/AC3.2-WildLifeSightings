@@ -25,15 +25,14 @@ class APIRequestManager {
             }.resume()
     }
     
-    func postRequest(endPoint: String, data: [String:Any]) {
+    func postRequest(endPoint: String, data: [String:Any], method: String = "POST") {
         guard let url = URL(string: endPoint) else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = method
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // this is specifically for the midterm  -- don't change if you want to write there
-        request.addValue("Basic a2V5LTE6dHdwTFZPdm5IbEc2ajFBZndKOWI=", forHTTPHeaderField: "Authorization")
+        request.addValue("Basic a2V5LTE6NGNRd3JWNjU1dll2VFF0ZEtvcXk=", forHTTPHeaderField: "Authorization")
         
         do {
             let body = try JSONSerialization.data(withJSONObject: data, options: [])
@@ -62,4 +61,6 @@ class APIRequestManager {
             }
             }.resume()
     }
+    
+    
 }
