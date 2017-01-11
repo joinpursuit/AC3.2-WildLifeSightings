@@ -8,11 +8,6 @@
 
 import UIKit
 
-// SOURCE for how to use button in xib to segue: http://stackoverflow.com/questions/26880526/performing-a-segue-from-a-button-within-a-custom-uitableviewcell
-protocol MyCustomCellDelegator {
-    func callSegueFromCell(myData dataobject: AnyObject)
-}
-
 class SightingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var sightingImageView: UIImageView!
@@ -30,13 +25,7 @@ class SightingTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    var delegate: MyCustomCellDelegator!
-    
     @IBAction func infoButtonTapped(_ sender: UIButton) {
-        let mydata = "Anydata you want to send to the next controller"
-        if(self.delegate != nil){ //Just to be safe.
-            self.delegate.callSegueFromCell(myData: mydata as AnyObject)
-        }
     }
     
 
