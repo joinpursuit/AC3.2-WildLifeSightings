@@ -10,6 +10,8 @@ import UIKit
 
 class SightingDetailsViewController: UIViewController {
 
+    var sighting: Sighting!
+    
     @IBOutlet weak var sightingImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
@@ -19,6 +21,12 @@ class SightingDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabel.text = sighting.name!
+        detailsTextView.text = sighting.details ?? ""
+        if let image = sighting.fullImageData as? Data {
+            sightingImageView.image = UIImage(data: image)
+        }
+        //TODO : fill in the rest
     }
     
     @IBAction func editSaveButtonPressed(_ sender: UIButton) {
