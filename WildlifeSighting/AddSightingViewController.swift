@@ -82,7 +82,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 8.0)
         photoBottomConstraint.isActive = true
 
-        takePhotoButton.setTitle("Retake Photo", for: .normal)
+        takePhotoButton.setTitle("Retake Photo?", for: .normal)
     }
     
     
