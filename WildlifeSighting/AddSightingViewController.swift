@@ -58,6 +58,14 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
             sightingImageView.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
 //            takePhotoButton.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
         photoBottomConstraint.isActive = true
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddSightingViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
  
     }
  
@@ -220,6 +228,11 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
             addDetailsLabel.isHidden = false
         }
         return true
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
 }
