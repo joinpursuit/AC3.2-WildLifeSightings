@@ -23,11 +23,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" text="Image details:" translatesAutoresizingMaskIntoConstraints="NO" id="Yqi-Nn-GLk">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqi-Nn-GLk">
                                 <rect key="frame" x="16" y="379.5" width="343" height="201.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aZF-oG-2AP" id="H1I-PN-JEa"/>
+                                </connections>
                             </textView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6M-kQ-Dpb">
                                 <rect key="frame" x="16" y="589" width="51" height="31"/>
@@ -63,6 +66,12 @@
                                     <action selector="takePhotoButtonPressed:" destination="aZF-oG-2AP" eventType="touchUpInside" id="age-xT-wlC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-PS-3xw">
+                                <rect key="frame" x="24" y="452" width="72.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -71,10 +80,12 @@
                             <constraint firstItem="9SD-0I-RSF" firstAttribute="leading" secondItem="B6M-kQ-Dpb" secondAttribute="trailing" constant="8" symbolic="YES" id="AtQ-Va-F3T"/>
                             <constraint firstItem="48P-WW-TSF" firstAttribute="top" secondItem="ejM-Et-qzw" secondAttribute="bottom" constant="8" symbolic="YES" id="Bkm-CY-ZUj"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ejM-Et-qzw" secondAttribute="leading" id="ETG-TC-rzg"/>
+                            <constraint firstItem="lPa-PS-3xw" firstAttribute="centerY" secondItem="Yqi-Nn-GLk" secondAttribute="centerY" constant="-20" id="JE5-Id-GOP"/>
                             <constraint firstAttribute="leadingMargin" secondItem="B6M-kQ-Dpb" secondAttribute="leading" id="KWz-0P-pQx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Rv3-Vq-kFD" secondAttribute="trailing" id="Kty-i1-u2y"/>
                             <constraint firstItem="BIP-35-CVP" firstAttribute="bottom" secondItem="Ti2-04-uMP" secondAttribute="centerY" id="ToI-bl-oaQ"/>
                             <constraint firstItem="9SD-0I-RSF" firstAttribute="centerY" secondItem="B6M-kQ-Dpb" secondAttribute="centerY" id="bjq-5b-acq"/>
+                            <constraint firstItem="lPa-PS-3xw" firstAttribute="leading" secondItem="Yqi-Nn-GLk" secondAttribute="leading" constant="8" id="ccj-FC-emK"/>
                             <constraint firstItem="BIP-35-CVP" firstAttribute="top" secondItem="5GZ-me-Dfx" secondAttribute="bottom" constant="8" symbolic="YES" id="fP5-IJ-qUc"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Rv3-Vq-kFD" secondAttribute="leading" id="fpO-3K-0m2"/>
                             <constraint firstItem="Yqi-Nn-GLk" firstAttribute="top" secondItem="Rv3-Vq-kFD" secondAttribute="bottom" constant="8" symbolic="YES" id="g0U-sv-Cdy"/>
@@ -97,11 +108,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addDetailsLabel" destination="lPa-PS-3xw" id="Qg6-CY-AJ0"/>
                         <outlet property="currentLocationSwitch" destination="B6M-kQ-Dpb" id="0OT-IE-0Ss"/>
                         <outlet property="shareToTwitterSwitch" destination="ejM-Et-qzw" id="Z6A-eH-3fE"/>
                         <outlet property="sightingDetailsTextView" destination="Yqi-Nn-GLk" id="jM0-MR-WdR"/>
                         <outlet property="sightingImageView" destination="BIP-35-CVP" id="dEB-1f-dbN"/>
                         <outlet property="sightingNameTextField" destination="Rv3-Vq-kFD" id="1fB-nJ-0VK"/>
+                        <outlet property="takePhotoButton" destination="EVT-o9-l30" id="xTB-zS-I3k"/>
                         <segue destination="5IH-0W-CG3" kind="show" id="zmi-nc-bhw"/>
                     </connections>
                 </viewController>
@@ -149,7 +162,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" editable="NO" text="Image Details" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v7b-Ko-PCE">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v7b-Ko-PCE">
                                 <rect key="frame" x="16" y="380" width="295" height="96"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>

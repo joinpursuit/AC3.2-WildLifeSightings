@@ -243,7 +243,10 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
                 let cell = superview.superview as? SightingTableViewCell else { return }
             let indexPath = tableView.indexPath(for: cell)
             // SOURCE: http://stackoverflow.com/questions/28659845/swift-how-to-get-the-indexpath-row-when-a-button-in-a-cell-is-tapped
+//            destination.sighting = fetchedResultsController.object(at: indexPath!).objectID
             destination.sighting = fetchedResultsController.object(at: indexPath!)
+
+            destination.sightingIndexPath = indexPath
         }
     }
     
