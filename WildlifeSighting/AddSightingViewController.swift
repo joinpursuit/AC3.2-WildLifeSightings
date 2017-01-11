@@ -50,6 +50,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         super.viewDidLoad()
         locationManager.delegate = self
         setupTextView()
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     
@@ -198,6 +199,13 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     func textViewDidBeginEditing(_ textView: UITextView) {
         addDetailsLabel.isHidden = true
         return
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        if sightingDetailsTextView.text.isEmpty || sightingDetailsTextView.text == "" {
+            addDetailsLabel.isHidden = false
+        }
+        return true
     }
     
 }

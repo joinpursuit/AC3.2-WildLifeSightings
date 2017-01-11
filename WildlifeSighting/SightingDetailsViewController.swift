@@ -32,6 +32,7 @@ class SightingDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLabels()
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     
