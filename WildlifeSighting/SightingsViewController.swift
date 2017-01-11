@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import CoreData
 
-class SightingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate {
+class SightingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate, MyCustomCellDelegator {
     
     
     // MARK: - Outlets
@@ -119,16 +119,18 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SightingTableViewCell", for: indexPath) as! SightingTableViewCell
+        cell.delegate = self
         let object = fetchedResultsController.object(at: indexPath)
         cell.sightingTitleLabel.text = object.name!
         cell.sightingDateAndTimeLabel.text = object.dateAndTime
         
         if let thumbData = object.thumbImageData as? Data {
-            cell.imageView?.image = UIImage(data: thumbData)
+            cell.sightingImageView?.image = UIImage(data: thumbData)
         }
         return cell
     }
     
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true // return true to be able to delete things - the default is false
     }
@@ -181,6 +183,13 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 
+    //MARK: - MyCustomCellDelegator Methods
+    
+    func callSegueFromCell(myData dataobject: AnyObject) {
+        //try not to send self, just to avoid retain cycles(depends on how you handle the code on the next controller)
+        self.performSegue(withIdentifier: "SegueToDetailsVC", sender: dataobject)
+    }
+    
     
     
 }
