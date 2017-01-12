@@ -343,6 +343,7 @@
                         <outlet property="mapOrDataSegmentedControl" destination="Uz7-nG-r2z" id="2tq-Oh-j3L"/>
                         <outlet property="mapView" destination="JVB-ax-Rp6" id="29a-Sh-wg6"/>
                         <outlet property="mapViewTopLayoutConstraint" destination="trm-vQ-80r" id="IBo-ud-gRM"/>
+                        <outlet property="sortsegmentControl" destination="DZM-dG-imV" id="oVf-tW-sep"/>
                         <outlet property="tableView" destination="Mrn-Gs-D8s" id="VhZ-JQ-vpH"/>
                         <outlet property="tableViewBottomLayoutConstraint" destination="eZD-Va-ltL" id="S0H-tv-7uR"/>
                         <segue destination="UPM-QC-Rs3" kind="show" identifier="SegueToDetailsVC" id="HfO-SL-sPA"/>

@@ -79,49 +79,8 @@ class Fieldbook {
         catch {
             print("Error encountered with \(error)")
         }
-        
         return sightingsToReturn
-    }
-    
-    static func postSighting(name: String, date: String, weather: String = "N/A", lat: Double = 0.0, long: Double = 0.0, details: String) {
-        
-        let sightingEntry: [String : Any] = [
-            "name" : name,
-            "date" : date,
-            "weather" : weather,
-            "lat" : lat,
-            "long" : long,
-            "details" : details
-        ]
-        
-        APIRequestManager.manager.postRequest(endPoint: "https://api.fieldbook.com/v1/58757bb45de269040063ab78/sightings", data: sightingEntry)         
-    }
-    
-    static func patchOrDeleteSighting(id: Int, name: String, date: String, weather: String, lat: Double, long: Double, details: String, method: String = "PATCH") {
-        
-        let sightingEntry: [String : Any] = [
-            "name" : name,
-            "date" : date,
-            "weather" : weather,
-            "lat" : lat,
-            "long" : long,
-            "details" : details
-        ]
-        
-        APIRequestManager.manager.postRequest(endPoint: "https://api.fieldbook.com/v1/58757bb45de269040063ab78/sightings/\(id)", data: sightingEntry, method: method) 
     }
 }
 
- /*
- "id": 7,
- "record_url": "https://fieldbook.com/records/587661bdd806f90400c3cb49",
- "sighting_id": "Sighting 7",
- "name": "Hari",
- "date": "2016-02-10",
- "weather": "Shitty",
- "lat": 10.0231,
- "long": 12.123123,
- "details": "Glasses"
- 
- 
- */
+

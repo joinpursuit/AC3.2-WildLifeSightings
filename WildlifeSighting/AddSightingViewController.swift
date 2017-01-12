@@ -105,7 +105,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     
     func saveToCoreData() {
         
-        guard let sightingName = sightingNameTextField.text, sightingName.characters.count > 0 else {
+        guard let sightingName = sightingNameTextField.text?.capitalized, sightingName.characters.count > 0 else {
             showAlertWith(title: "No Name", message: "Please make sure you've entered a name for this sighting.")
             return
         }

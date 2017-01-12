@@ -41,7 +41,7 @@ extension Sighting {
     }
     
     var firstLetter: String {
-        return String(self.name!.characters.first!).uppercased()
+        return String(self.name!.characters.first!)
     }
     
     var weatherString: String {

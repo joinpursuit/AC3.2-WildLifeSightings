@@ -24,6 +24,9 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapOrDataSegmentedControl: UISegmentedControl!
+    
+    
+    @IBOutlet weak var sortsegmentControl: UISegmentedControl!
     @IBOutlet weak var tableViewBottomLayoutConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var mapViewTopLayoutConstraint: NSLayoutConstraint!
@@ -50,6 +53,9 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        sortType = .date
+        sortsegmentControl.selectedSegmentIndex = 0
+        initializeFetchedResultsController()
         navigationController?.setToolbarHidden(true, animated: false)
         tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         setMapPins()

@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import SwiftSpinner
-
 
 enum HttpMethod: String {
     case patch
@@ -34,52 +32,7 @@ class APIRequestManager {
             }.resume()
     }
     
-    func postRequest(endPoint: String = "https://api.fieldbook.com/v1/58757bb45de269040063ab78/sightings", data: [String:Any], method: String = "POST") {
-        dump(data)
-        guard let url = URL(string: endPoint) else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = method
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        request.addValue("Basic a2V5LTE6NGNRd3JWNjU1dll2VFF0ZEtvcXk=", forHTTPHeaderField: "Authorization")
-        
-        do {
-            DispatchQueue.main.async {
-                SwiftSpinner.show("Uploading to Fieldbook")
-            }
-            let body = try JSONSerialization.data(withJSONObject: data, options: [])
-            request.httpBody = body
-        } catch {
-            print("Error posting body: \(error)")
-        }
-        
-        let session = URLSession(configuration: .default)
-        session.dataTask(with: request) { (data, response, error) in
-            if error != nil {
-                print("Error encountered during post request: \(error)")
-            }
-            if response != nil {
-                let httpResponse = (response! as! HTTPURLResponse)
-                print("Response status code: \(httpResponse.statusCode)")
-            }
-            guard let validData = data else { return }
-            do {
-                let json = try JSONSerialization.jsonObject(with: validData, options: []) as? [String:Any]
-                if let validJson = json {
-                    print(validJson)
-                }
-            } catch {
-                print("Error converting json: \(error)")
-            }
-            DispatchQueue.main.async {
-                SwiftSpinner.hide()
-            }
-            }.resume()
-    }
-    
-    
-        func makeRequest(httpMethod: HttpMethod, endpoint: String, bodyDict: [String: Any] = [:], completionHandler: @escaping (URLResponse, Data) -> Void) {
+    func makeRequest(httpMethod: HttpMethod, endpoint: String, bodyDict: [String: Any] = [:], completionHandler: @escaping (URLResponse, Data) -> Void) {
         guard let url = URL(string: endpoint) else { return }
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
