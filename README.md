@@ -24,3 +24,18 @@ CocoaPods used:
 | The ImagePicker View        | SwiftSpinner while Transfering Data           | 
 | ------------- |:-------------:| 
 | ![](http://i.imgur.com/5kL7YKgl.jpg)      | ![](http://i.imgur.com/cPOzingl.jpg) | 
+
+## Project Timeline and Methodology
+
+The 3-day minimum viable product would allow the end-user to save persistent data, track location, and share to an online community. The tasks were delegated according to point value so team members could work independently beyond the inital planning stages (and to minimize conflicts). 
+
+The agile-lite-alike method allowed all team members to work without overlap or requiring additional time to coordinate. By mid-day of Day 3, most features were implemented to viable standards; remaining time was spent to improve existing features and to extend the feature-set of the app within reason.
+
+![](http://i.imgur.com/dfiGMo2.jpg)
+
+## Team \#STV
+[Sabrina Ip](https://github.com/sabrinaip): Layout
+
+[Tom Seymour](https://github.com/seymotom): Core Data, Core Location, CocoaPods
+
+[Vic Zhong](https://github.com/vic-zhong): API
