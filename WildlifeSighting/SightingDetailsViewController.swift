@@ -59,6 +59,7 @@ class SightingDetailsViewController: UIViewController {
         
         if let weather = sighting.weatherDescription, weather != "" {
             dateWeatherText += "\nWeather: " + weather
+            dateWeatherText += "\nTemperature: " + String(sighting.temperature)
         }
         dateWeatherLocationTextView.text = dateWeatherText
     }
@@ -75,6 +76,8 @@ class SightingDetailsViewController: UIViewController {
             detailsTextView.layer.borderColor = borderColor.cgColor
             detailsTextView.layer.borderWidth = 0.6;
             detailsTextView.layer.cornerRadius = 6.0;
+            detailsTextView.layer.backgroundColor = UIColor.white.withAlphaComponent(1.0).cgColor
+
             editSaveButton.setTitle("Save", for: .normal)
         } else {
             guard let sightingName = titleTextField.text, sightingName.characters.count > 0 else {
