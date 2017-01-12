@@ -42,9 +42,6 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09E-ll-MLd">
                         <rect key="frame" x="383" y="66" width="22" height="22"/>
-                        <connections>
-                            <action selector="infoButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xfm-pp-dfO"/>
-                        </connections>
                     </button>
                 </subviews>
                 <constraints>

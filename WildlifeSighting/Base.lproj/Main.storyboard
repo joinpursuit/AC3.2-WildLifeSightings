@@ -137,7 +137,7 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="&lt;" id="Be2-gB-fcZ">
+                        <barButtonItem title="←" id="Be2-gB-fcZ">
                             <connections>
                                 <action selector="browserButtonPressed:" destination="5IH-0W-CG3" id="Jdf-HX-S2D"/>
                             </connections>
@@ -149,7 +149,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="PnE-nJ-dY3"/>
-                        <barButtonItem title="&gt;" id="idR-T7-iWn">
+                        <barButtonItem title="→" id="idR-T7-iWn">
                             <connections>
                                 <action selector="browserButtonPressed:" destination="5IH-0W-CG3" id="cXV-jM-WVP"/>
                             </connections>
@@ -287,7 +287,7 @@
                                 </connections>
                             </segmentedControl>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="JVB-ax-Rp6">
-                                <rect key="frame" x="16" y="334" width="343" height="277"/>
+                                <rect key="frame" x="16" y="342" width="343" height="269"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mrn-Gs-D8s">
                                 <rect key="frame" x="16" y="72" width="343" height="262"/>
@@ -298,7 +298,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Mrn-Gs-D8s" firstAttribute="trailing" secondItem="zNb-NJ-NTi" secondAttribute="trailingMargin" id="02k-sJ-lgF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Uz7-nG-r2z" secondAttribute="trailing" id="06C-3k-03o"/>
@@ -308,7 +308,7 @@
                             <constraint firstItem="Uz7-nG-r2z" firstAttribute="top" secondItem="JVB-ax-Rp6" secondAttribute="bottom" constant="8" symbolic="YES" id="PDx-qW-sBU"/>
                             <constraint firstItem="Mrn-Gs-D8s" firstAttribute="top" secondItem="TPc-M0-LXh" secondAttribute="bottom" constant="8" symbolic="YES" id="XM8-RB-xbC"/>
                             <constraint firstItem="Mrn-Gs-D8s" firstAttribute="bottom" secondItem="zNb-NJ-NTi" secondAttribute="centerY" id="eZD-Va-ltL"/>
-                            <constraint firstItem="JVB-ax-Rp6" firstAttribute="top" secondItem="Mrn-Gs-D8s" secondAttribute="bottom" id="trm-vQ-80r"/>
+                            <constraint firstItem="JVB-ax-Rp6" firstAttribute="top" secondItem="Mrn-Gs-D8s" secondAttribute="bottom" constant="8" id="trm-vQ-80r"/>
                             <constraint firstItem="JVB-ax-Rp6" firstAttribute="trailing" secondItem="zNb-NJ-NTi" secondAttribute="trailingMargin" id="wHu-lT-OEL"/>
                             <constraint firstItem="Uz7-nG-r2z" firstAttribute="leading" secondItem="zNb-NJ-NTi" secondAttribute="leadingMargin" id="yp1-3V-6pF"/>
                         </constraints>

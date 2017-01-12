@@ -16,7 +16,6 @@ class TwitterWebViewController: UIViewController, WKUIDelegate,  WKNavigationDel
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     @IBOutlet weak var reloadButton: UIBarButtonItem!
     
-    
     var webView: WKWebView!
     
     private func setUpWebView() {
@@ -46,7 +45,6 @@ class TwitterWebViewController: UIViewController, WKUIDelegate,  WKNavigationDel
         self.webView.navigationDelegate = self
         webView.load(myRequest)
     }
-    
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "loading") {
@@ -82,7 +80,6 @@ class TwitterWebViewController: UIViewController, WKUIDelegate,  WKNavigationDel
             break
         }
     }
-    
     
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         webView.removeObserver(self, forKeyPath: "loading")

@@ -25,7 +25,8 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     @IBOutlet weak var shareToTwitterSwitch: UISwitch!
     @IBOutlet weak var takePhotoButton: UIButton!
     @IBOutlet weak var photoBottomConstraint: NSLayoutConstraint!
-    // MARK: - Preperties
+    
+    // MARK: - Properties
     
     var sightingPhoto: UIImage?
     var currentWeather: DarkSkiesWeather?
@@ -56,13 +57,11 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         setupTextView()
         self.automaticallyAdjustsScrollViewInsets = false
         bringUpTexts()
-
         
         //Source: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddSightingViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
- 
     }
  
  
@@ -77,8 +76,9 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     }
     
     
+    // MARK: - Saving and Sharing
+    
     @IBAction func saveBarButtonPressed(_ sender: UIBarButtonItem) {
-        
         // this is an async call and wont be finished before the function returns. #PROBLEM
         // fixed this problem by calling saveToCoreData() in completion handler
         if let validCurrentLocation = currentLocation, currentLocationSwitch.isOn {
@@ -93,7 +93,6 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
                     SwiftSpinner.hide()
                     DispatchQueue.main.async {
                         self.saveToCoreData()
-                        
                     }
                 }
             })
@@ -102,9 +101,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         }
     }
     
-    
     func saveToCoreData() {
-        
         guard let sightingName = sightingNameTextField.text?.capitalized, sightingName.characters.count > 0 else {
             showAlertWith(title: "No Name", message: "Please make sure you've entered a name for this sighting.")
             return
@@ -157,8 +154,6 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         showShareAlert()
     }
     
-    
-    
     func shareWithCommunity() {
         dump(communityPostDict)
         SwiftSpinner.show("Sharing to Community")
@@ -185,6 +180,8 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         }
     }
     
+    // MARK: - Alert View Methods
+    
     func showShareAlert() {
         let alertController = UIAlertController(title: "Sighting Saved Successfully", message: "Would you like to share your sighting with the WildLifeSighting community?", preferredStyle: .alert)
         let noAction = UIAlertAction(title: "Not Today", style: .cancel) { (_) in
@@ -197,8 +194,6 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         self.present(alertController, animated: true, completion: nil)
     }
 
-    
-    
     func showAlertWith(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: completion)
@@ -297,7 +292,6 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     }
     
     func bringDownTexts() {
-
         photoBottomConstraint.isActive = false
         photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 8.0)
         photoBottomConstraint.isActive = true
@@ -307,13 +301,4 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-
-    func returnDate() -> String {
-        let rightNow =  NSDate() as Date
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "MM/dd/yyyy"
-        return dateformatter.string(from: rightNow)
-    }
-
-    
 }

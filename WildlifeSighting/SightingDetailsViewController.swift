@@ -27,27 +27,23 @@ class SightingDetailsViewController: UIViewController {
         return appDelegate.persistentContainer.viewContext
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setToolbarHidden(true, animated: false)
-
         updateLabels()
         self.automaticallyAdjustsScrollViewInsets = false
-        // Source: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
-        //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SightingDetailsViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     
-    
     func updateLabels() {
         let sighting: Sighting = mainContext.object(with: sightingID) as! Sighting
         titleLabel.text = sighting.name!
-        
         detailsTextView.text = sighting.details ?? ""
         if let image = sighting.fullImageData as? Data {
             sightingImageView.image = UIImage(data: image)
+        } else {
+            sightingImageView.image = #imageLiteral(resourceName: "noImage")
         }
         var dateWeatherText = ""
         dateWeatherText += sighting.dateAndTime
@@ -56,7 +52,6 @@ class SightingDetailsViewController: UIViewController {
             dateWeatherText += "\nLongitude: " + String(sighting.longitude)
             //TODO: Get Placemark
         }
-        
         if let weather = sighting.weatherDescription, weather != "" {
             dateWeatherText += "\nWeather: " + weather
             dateWeatherText += "\nTemperature: " + String(sighting.temperature)
@@ -65,9 +60,7 @@ class SightingDetailsViewController: UIViewController {
     }
     
     @IBAction func editSaveButtonPressed(_ sender: UIButton) {
-        
         if editSaveButton.titleLabel?.text == "Edit" {
-
             titleLabel.isHidden = true
             titleTextField.isHidden = false
             detailsTextView.isEditable = true
@@ -98,7 +91,6 @@ class SightingDetailsViewController: UIViewController {
         }
     }
     
-
     func saveEditToCoreData() {
         guard let sightingName = titleTextField.text, sightingName.characters.count > 0 else {
             showAlertWith(title: "No Name", message: "Please make sure you've entered a name for this sighting.")
@@ -130,7 +122,6 @@ class SightingDetailsViewController: UIViewController {
         alert.addAction(okayAction)
         present(alert, animated: true, completion: nil)
     }
-
     
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.

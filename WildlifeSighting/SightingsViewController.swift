@@ -102,9 +102,9 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
             mapView.isHidden = false
             tableViewBottomLayoutConstraint.isActive = false
             mapViewTopLayoutConstraint.isActive = false
-            tableViewBottomLayoutConstraint = tableView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor)
+            tableViewBottomLayoutConstraint = tableView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -4.0)
             tableViewBottomLayoutConstraint.isActive = true
-            mapViewTopLayoutConstraint = mapView.topAnchor.constraint(equalTo: self.view.centerYAnchor)
+            mapViewTopLayoutConstraint = mapView.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 4.0)
             mapViewTopLayoutConstraint.isActive = true
 
         case 1:
@@ -138,7 +138,6 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         initializeFetchedResultsController()
     }
 
-    
     // MARK: - Initialize Fetched Results Controller
     
     func initializeFetchedResultsController() {
