@@ -9,6 +9,14 @@
 import Foundation
 import SwiftSpinner
 
+
+enum HttpMethod: String {
+    case patch
+    case post
+    case get
+    case delete
+}
+
 class APIRequestManager {
     
     static let manager = APIRequestManager()
@@ -26,7 +34,8 @@ class APIRequestManager {
             }.resume()
     }
     
-    func postRequest(endPoint: String, data: [String:Any], method: String = "POST") {
+    func postRequest(endPoint: String = "https://api.fieldbook.com/v1/58757bb45de269040063ab78/sightings", data: [String:Any], method: String = "POST") {
+        dump(data)
         guard let url = URL(string: endPoint) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = method
@@ -36,7 +45,9 @@ class APIRequestManager {
         request.addValue("Basic a2V5LTE6NGNRd3JWNjU1dll2VFF0ZEtvcXk=", forHTTPHeaderField: "Authorization")
         
         do {
-//            SwiftSpinner.show("Uploading to Fieldbook")
+            DispatchQueue.main.async {
+                SwiftSpinner.show("Uploading to Fieldbook")
+            }
             let body = try JSONSerialization.data(withJSONObject: data, options: [])
             request.httpBody = body
         } catch {
@@ -61,9 +72,42 @@ class APIRequestManager {
             } catch {
                 print("Error converting json: \(error)")
             }
-            SwiftSpinner.hide()
+            DispatchQueue.main.async {
+                SwiftSpinner.hide()
+            }
             }.resume()
     }
     
     
+        func makeRequest(httpMethod: HttpMethod, endpoint: String, bodyDict: [String: Any] = [:], completionHandler: @escaping (URLResponse, Data) -> Void) {
+        guard let url = URL(string: endpoint) else { return }
+        var request = URLRequest(url: url)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Basic a2V5LTE6NGNRd3JWNjU1dll2VFF0ZEtvcXk=", forHTTPHeaderField: "Authorization")
+        request.httpMethod = httpMethod.rawValue.uppercased()
+        
+        if httpMethod == .post || httpMethod == .patch {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: bodyDict, options: [])
+            }
+            catch {
+                print("Error converting to data: \(error)")
+                return
+            }
+        }
+        let session = URLSession(configuration: .default)
+        session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            if let error = error {
+                print("Error: \(error)")
+            }
+            if let response = response, let data = data {
+                completionHandler(response, data)
+            }
+            }.resume()
+    }
 }
+
+
+    
+

@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="251" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqi-Nn-GLk">
-                                <rect key="frame" x="16" y="418" width="343" height="163"/>
+                                <rect key="frame" x="16" y="418" width="343" height="202"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -33,10 +33,10 @@
                                 </connections>
                             </textView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6M-kQ-Dpb">
-                                <rect key="frame" x="16" y="589" width="51" height="31"/>
+                                <rect key="frame" x="16" y="628" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include current location and weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SD-0I-RSF">
-                                <rect key="frame" x="73" y="594" width="280" height="21"/>
+                                <rect key="frame" x="73" y="628" width="280" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,15 +50,6 @@
                                     <outlet property="delegate" destination="aZF-oG-2AP" id="dga-Zh-R4h"/>
                                 </connections>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejM-Et-qzw">
-                                <rect key="frame" x="16" y="628" width="51" height="31"/>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share to Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kI1-ic-apY">
-                                <rect key="frame" x="73" y="633" width="122" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BIP-35-CVP">
                                 <rect key="frame" x="16" y="72" width="343" height="262"/>
                             </imageView>
@@ -78,15 +69,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="kI1-ic-apY" firstAttribute="leading" secondItem="ejM-Et-qzw" secondAttribute="trailing" constant="8" symbolic="YES" id="9yF-ta-7PJ"/>
                             <constraint firstItem="9SD-0I-RSF" firstAttribute="leading" secondItem="B6M-kQ-Dpb" secondAttribute="trailing" constant="8" symbolic="YES" id="AtQ-Va-F3T"/>
                             <constraint firstItem="Rv3-Vq-kFD" firstAttribute="top" secondItem="EVT-o9-l30" secondAttribute="bottom" constant="8" symbolic="YES" id="Bk8-xR-rNu"/>
-                            <constraint firstItem="48P-WW-TSF" firstAttribute="top" secondItem="ejM-Et-qzw" secondAttribute="bottom" constant="8" symbolic="YES" id="Bkm-CY-ZUj"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="ejM-Et-qzw" secondAttribute="leading" id="ETG-TC-rzg"/>
+                            <constraint firstItem="48P-WW-TSF" firstAttribute="top" secondItem="9SD-0I-RSF" secondAttribute="bottom" constant="8" id="FIa-XQ-fVn"/>
                             <constraint firstItem="lPa-PS-3xw" firstAttribute="top" secondItem="Yqi-Nn-GLk" secondAttribute="top" constant="8" id="JE5-Id-GOP"/>
                             <constraint firstItem="EVT-o9-l30" firstAttribute="centerX" secondItem="Ti2-04-uMP" secondAttribute="centerX" id="JJt-Iu-grm"/>
                             <constraint firstAttribute="leadingMargin" secondItem="B6M-kQ-Dpb" secondAttribute="leading" id="KWz-0P-pQx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Rv3-Vq-kFD" secondAttribute="trailing" id="Kty-i1-u2y"/>
+                            <constraint firstItem="48P-WW-TSF" firstAttribute="top" secondItem="B6M-kQ-Dpb" secondAttribute="bottom" constant="8" id="LDs-wD-fkO"/>
                             <constraint firstItem="BIP-35-CVP" firstAttribute="bottom" secondItem="Ti2-04-uMP" secondAttribute="centerY" id="ToI-bl-oaQ"/>
                             <constraint firstItem="9SD-0I-RSF" firstAttribute="centerY" secondItem="B6M-kQ-Dpb" secondAttribute="centerY" id="bjq-5b-acq"/>
                             <constraint firstItem="lPa-PS-3xw" firstAttribute="leading" secondItem="Yqi-Nn-GLk" secondAttribute="leading" constant="8" id="ccj-FC-emK"/>
@@ -97,8 +87,6 @@
                             <constraint firstItem="B6M-kQ-Dpb" firstAttribute="top" secondItem="Yqi-Nn-GLk" secondAttribute="bottom" constant="8" symbolic="YES" id="hD3-29-hvH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BIP-35-CVP" secondAttribute="trailing" id="lgH-1O-gfl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yqi-Nn-GLk" secondAttribute="trailing" id="mqf-9d-pMM"/>
-                            <constraint firstItem="kI1-ic-apY" firstAttribute="centerY" secondItem="ejM-Et-qzw" secondAttribute="centerY" id="nB5-eW-wQa"/>
-                            <constraint firstItem="ejM-Et-qzw" firstAttribute="top" secondItem="B6M-kQ-Dpb" secondAttribute="bottom" constant="8" symbolic="YES" id="uYD-U1-9n0"/>
                             <constraint firstAttribute="leadingMargin" secondItem="BIP-35-CVP" secondAttribute="leading" id="wDr-AS-3eD"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Yqi-Nn-GLk" secondAttribute="leading" id="wFu-5k-gmC"/>
                         </constraints>
@@ -115,7 +103,6 @@
                         <outlet property="addDetailsLabel" destination="lPa-PS-3xw" id="Qg6-CY-AJ0"/>
                         <outlet property="currentLocationSwitch" destination="B6M-kQ-Dpb" id="0OT-IE-0Ss"/>
                         <outlet property="photoBottomConstraint" destination="ToI-bl-oaQ" id="qph-3k-bfk"/>
-                        <outlet property="shareToTwitterSwitch" destination="ejM-Et-qzw" id="Z6A-eH-3fE"/>
                         <outlet property="sightingDetailsTextView" destination="Yqi-Nn-GLk" id="jM0-MR-WdR"/>
                         <outlet property="sightingImageView" destination="BIP-35-CVP" id="dEB-1f-dbN"/>
                         <outlet property="sightingNameTextField" destination="Rv3-Vq-kFD" id="1fB-nJ-0VK"/>
