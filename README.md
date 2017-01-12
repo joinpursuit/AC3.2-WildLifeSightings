@@ -1,10 +1,15 @@
 # AC3.2-WildLifeSightings
 
-AC3.2-WildLifeSightings is a subject-tracking app that utilizies CoreData to store meaningful, persistant mutable entries. 
+AC3.2-WildLifeSightings is a subject-tracking app that utilizies Core Data to store meaningful, persistant mutable entries. 
 
-This app utilizes CoreLocation and CoreData to store client-side photos & information, which is fetched and displayed onto a mapView. 
+This app mainly utilizes Core Location and Core Data to store client-side photos & information, which is fetched and displayed onto a mapView. 
+
+API's used:
+- [Dark Skys Weather](https://darksky.net/dev/) (No Auth): A no-nonsense forecast API to attach current weather conditions to our Sighting entity.
+- [Fieldbook](https://fieldbook.com/) (Basic Auth): While an object is saved into Core Data, a portion of the information can be POST'ed for external review.
+
 
 CocoaPods used: 
-- SwiftSpinner
-- ImagePicker
+- [SwiftSpinner](https://github.com/icanzilb/SwiftSpinner): During data-sending sessions, a Spinning icon appears to show the end-user that a transfer process is underway.
+- [ImagePicker](https://github.com/hyperoslo/ImagePicker): A UI pod that replaces the UIImagePickerController, it allows the user to take photos and/or choose gallery shots to append, simultaneously.
 
