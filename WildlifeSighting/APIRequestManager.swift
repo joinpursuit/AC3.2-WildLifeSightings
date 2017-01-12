@@ -36,7 +36,7 @@ class APIRequestManager {
         request.addValue("Basic a2V5LTE6NGNRd3JWNjU1dll2VFF0ZEtvcXk=", forHTTPHeaderField: "Authorization")
         
         do {
-            SwiftSpinner.show("Uploading to Fieldbook")
+//            SwiftSpinner.show("Uploading to Fieldbook")
             let body = try JSONSerialization.data(withJSONObject: data, options: [])
             request.httpBody = body
         } catch {
