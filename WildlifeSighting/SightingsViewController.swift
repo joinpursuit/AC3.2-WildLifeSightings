@@ -20,6 +20,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var mapOrDataSegmentedControl: UISegmentedControl!
     @IBOutlet weak var tableViewBottomLayoutConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var mapViewTopLayoutConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -33,6 +34,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setToolbarHidden(true, animated: false)
         setDelegates()
         setUpTableView()
         initializeFetchedResultsController()
@@ -40,7 +42,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear")
+        navigationController?.setToolbarHidden(true, animated: false)
         setMapPins()
     }
     
@@ -75,16 +77,27 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func mapOrDataSegmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
+            tableView.isHidden = false
             mapView.isHidden = false
             tableViewBottomLayoutConstraint.isActive = false
+            mapViewTopLayoutConstraint.isActive = false
             tableViewBottomLayoutConstraint = tableView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor)
             tableViewBottomLayoutConstraint.isActive = true
+            mapViewTopLayoutConstraint = mapView.topAnchor.constraint(equalTo: self.view.centerYAnchor)
+            mapViewTopLayoutConstraint.isActive = true
 
         case 1:
             mapView.isHidden = true
+            tableView.isHidden = false
             tableViewBottomLayoutConstraint.isActive = false
             tableViewBottomLayoutConstraint = tableView.bottomAnchor.constraint(equalTo: mapOrDataSegmentedControl.topAnchor, constant: -8.0)
             tableViewBottomLayoutConstraint.isActive = true
+        case 2:
+            tableView.isHidden = true
+            mapView.isHidden = false
+            mapViewTopLayoutConstraint.isActive = false
+            mapViewTopLayoutConstraint = mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80.0)
+            mapViewTopLayoutConstraint.isActive = true
         default:
             break
         }

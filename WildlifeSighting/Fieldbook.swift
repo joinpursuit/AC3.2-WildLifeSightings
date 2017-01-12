@@ -94,7 +94,7 @@ class Fieldbook {
             "details" : details
         ]
         
-        APIRequestManager.manager.postRequest(endPoint: "https://api.fieldbook.com/v1/58757bb45de269040063ab78/sightings", data: sightingEntry)
+        APIRequestManager.manager.postRequest(endPoint: "https://api.fieldbook.com/v1/58757bb45de269040063ab78/sightings", data: sightingEntry)         
     }
     
     static func patchOrDeleteSighting(id: Int, name: String, date: String, weather: String, lat: Double, long: Double, details: String, method: String = "PATCH") {
@@ -108,7 +108,7 @@ class Fieldbook {
             "details" : details
         ]
         
-        APIRequestManager.manager.postRequest(endPoint: "https://api.fieldbook.com/v1/58757bb45de269040063ab78/sightings/\(id)", data: sightingEntry, method: method)
+        APIRequestManager.manager.postRequest(endPoint: "https://api.fieldbook.com/v1/58757bb45de269040063ab78/sightings/\(id)", data: sightingEntry, method: method) 
     }
 }
 

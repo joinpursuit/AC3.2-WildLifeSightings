@@ -73,7 +73,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="kI1-ic-apY" firstAttribute="leading" secondItem="ejM-Et-qzw" secondAttribute="trailing" constant="8" symbolic="YES" id="9yF-ta-7PJ"/>
                             <constraint firstItem="9SD-0I-RSF" firstAttribute="leading" secondItem="B6M-kQ-Dpb" secondAttribute="trailing" constant="8" symbolic="YES" id="AtQ-Va-F3T"/>
@@ -107,6 +107,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addDetailsLabel" destination="lPa-PS-3xw" id="Qg6-CY-AJ0"/>
                         <outlet property="currentLocationSwitch" destination="B6M-kQ-Dpb" id="0OT-IE-0Ss"/>
@@ -116,7 +117,6 @@
                         <outlet property="sightingImageView" destination="BIP-35-CVP" id="dEB-1f-dbN"/>
                         <outlet property="sightingNameTextField" destination="Rv3-Vq-kFD" id="1fB-nJ-0VK"/>
                         <outlet property="takePhotoButton" destination="EVT-o9-l30" id="xTB-zS-I3k"/>
-                        <segue destination="5IH-0W-CG3" kind="show" id="zmi-nc-bhw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mX-7d-god" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -132,24 +132,57 @@
                         <viewControllerLayoutGuide type="bottom" id="Uxj-vD-QQu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BrB-BZ-aLh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6y-WT-GrW">
-                                <rect key="frame" x="16" y="87" width="343" height="560"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qoJ-tS-9nv">
+                                <rect key="frame" x="0.0" y="64" width="375" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qoJ-tS-9nv" secondAttribute="trailing" id="ILA-Ux-p1p"/>
+                            <constraint firstItem="qoJ-tS-9nv" firstAttribute="leading" secondItem="BrB-BZ-aLh" secondAttribute="leading" id="QFJ-m6-oec"/>
+                            <constraint firstItem="qoJ-tS-9nv" firstAttribute="top" secondItem="WN3-3a-Bh0" secondAttribute="bottom" id="lc6-7e-HJG"/>
+                        </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="&lt;" id="Be2-gB-fcZ">
+                            <connections>
+                                <action selector="browserButtonPressed:" destination="5IH-0W-CG3" id="Jdf-HX-S2D"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="YCf-U5-oxe"/>
+                        <barButtonItem systemItem="refresh" id="gAp-wu-f8a">
+                            <connections>
+                                <action selector="browserButtonPressed:" destination="5IH-0W-CG3" id="kRd-8n-KWf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="PnE-nJ-dY3"/>
+                        <barButtonItem title="&gt;" id="idR-T7-iWn">
+                            <connections>
+                                <action selector="browserButtonPressed:" destination="5IH-0W-CG3" id="cXV-jM-WVP"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="tQ6-t2-t9I">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="ejk-qh-8Tl">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="5IH-0W-CG3" id="oPc-y8-317"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="webView" destination="b6y-WT-GrW" id="fid-cd-RVq"/>
+                        <outlet property="backButton" destination="Be2-gB-fcZ" id="zOp-0K-m3a"/>
+                        <outlet property="forwardButton" destination="idR-T7-iWn" id="Z02-e5-L8Q"/>
+                        <outlet property="progressView" destination="qoJ-tS-9nv" id="Gy9-qg-fef"/>
+                        <outlet property="reloadButton" destination="gAp-wu-f8a" id="UCu-Ba-RX9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lq2-Pb-8uq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3880.8000000000002" y="448.42578710644682"/>
+            <point key="canvasLocation" x="2014" y="18"/>
         </scene>
         <!--Sighting Details View Controller-->
         <scene sceneID="bbO-kQ-wwU">
@@ -165,7 +198,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v7b-Ko-PCE">
                                 <rect key="frame" x="16" y="380" width="295" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="50" id="OdW-2h-RbJ"/>
                                 </constraints>
@@ -199,12 +232,12 @@
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" bounces="NO" editable="NO" text="Date / weather / location " selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCS-CX-slf">
                                 <rect key="frame" x="16" y="430" width="343" height="217"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="v7b-Ko-PCE" firstAttribute="leading" secondItem="AQB-sE-QRA" secondAttribute="leadingMargin" id="1Op-Jc-WvI"/>
                             <constraint firstItem="cRp-1s-nPE" firstAttribute="leading" secondItem="Y5v-RC-I3p" secondAttribute="trailing" constant="8" symbolic="YES" id="3r2-pI-Gqp"/>
@@ -226,6 +259,7 @@
                             <constraint firstItem="HCS-CX-slf" firstAttribute="top" secondItem="v7b-Ko-PCE" secondAttribute="bottom" id="xqw-jI-jwn"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dateWeatherLocationTextView" destination="HCS-CX-slf" id="wTA-b8-rob"/>
                         <outlet property="detailsTextView" destination="v7b-Ko-PCE" id="1qg-DN-5Aw"/>
@@ -256,12 +290,13 @@
                                 <segments>
                                     <segment title="Map and Data"/>
                                     <segment title="Data Only"/>
+                                    <segment title="Map Only"/>
                                 </segments>
                                 <connections>
                                     <action selector="mapOrDataSegmentedControlChanged:" destination="ALO-41-Gex" eventType="valueChanged" id="IHq-Q4-XpK"/>
                                 </connections>
                             </segmentedControl>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JVB-ax-Rp6">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="JVB-ax-Rp6">
                                 <rect key="frame" x="16" y="334" width="343" height="277"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mrn-Gs-D8s">
@@ -273,7 +308,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Mrn-Gs-D8s" firstAttribute="trailing" secondItem="zNb-NJ-NTi" secondAttribute="trailingMargin" id="02k-sJ-lgF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Uz7-nG-r2z" secondAttribute="trailing" id="06C-3k-03o"/>
@@ -290,15 +325,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="6xv-PK-8zC">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="See Our Back End?" id="mWz-Of-Lp8">
+                            <connections>
+                                <segue destination="5IH-0W-CG3" kind="show" identifier="webViewSegue" id="qw4-rJ-B4r"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="j7d-3N-dHm">
                             <connections>
                                 <segue destination="aZF-oG-2AP" kind="show" id="Pek-nd-Vy2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapOrDataSegmentedControl" destination="Uz7-nG-r2z" id="2tq-Oh-j3L"/>
                         <outlet property="mapView" destination="JVB-ax-Rp6" id="29a-Sh-wg6"/>
+                        <outlet property="mapViewTopLayoutConstraint" destination="trm-vQ-80r" id="IBo-ud-gRM"/>
                         <outlet property="tableView" destination="Mrn-Gs-D8s" id="VhZ-JQ-vpH"/>
                         <outlet property="tableViewBottomLayoutConstraint" destination="eZD-Va-ltL" id="S0H-tv-7uR"/>
                         <segue destination="UPM-QC-Rs3" kind="show" identifier="SegueToDetailsVC" id="HfO-SL-sPA"/>
@@ -311,7 +353,7 @@
         <!--Item-->
         <scene sceneID="njv-Cm-iVP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLa-4l-NvX" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="xLa-4l-NvX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="J5M-GK-jEV" userLabel="Map"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6AR-ol-LQc">
@@ -319,6 +361,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="TmK-ma-BkI">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="ALO-41-Gex" kind="relationship" relationship="rootViewController" id="xoY-zx-k1Y"/>
                     </connections>

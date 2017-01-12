@@ -30,6 +30,8 @@ class SightingDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setToolbarHidden(true, animated: false)
+
         updateLabels()
         self.automaticallyAdjustsScrollViewInsets = false
         // Source: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
@@ -62,8 +64,6 @@ class SightingDetailsViewController: UIViewController {
     }
     
     @IBAction func editSaveButtonPressed(_ sender: UIButton) {
-
-        
         
         if editSaveButton.titleLabel?.text == "Edit" {
 
