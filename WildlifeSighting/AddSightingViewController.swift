@@ -25,6 +25,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     @IBOutlet weak var shareToTwitterSwitch: UISwitch!
     @IBOutlet weak var takePhotoButton: UIButton!
     @IBOutlet weak var photoBottomConstraint: NSLayoutConstraint!
+    
     // MARK: - Preperties
     
     var sightingPhoto: UIImage?
@@ -42,7 +43,6 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
-    
     
     // MARK: - View Did Load
     
@@ -123,6 +123,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
             showAlertWith(title: "No Details", message: "Please make sure you've entered details for this sighting.")
             return
         }
+        
         let newSightingObject = Sighting(context: mainContext)
         newSightingObject.name = sightingName
         newSightingObject.details = sightingDetail
@@ -131,6 +132,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
             newSightingObject.temperature = currentWeatherInfo.temp
             newSightingObject.weatherDescription = currentWeatherInfo.summary
         }
+        
         if let currentLocationInfo = currentLocation {
             newSightingObject.latitude = currentLocationInfo.coordinate.latitude
             newSightingObject.longitude = currentLocationInfo.coordinate.longitude
@@ -140,6 +142,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
             let thumbData = UIImageJPEGRepresentation(image, 0.4),
             let fullData = UIImageJPEGRepresentation(image, 1.0) {
             
+            imgurAttempt(image: image)
             newSightingObject.imageAssetURL = String(describing: asset)
             newSightingObject.fullImageData = NSData(data: thumbData)
             newSightingObject.thumbImageData = NSData(data: fullData)
@@ -160,11 +163,13 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         if shareToTwitterSwitch.isOn && !currentLocationSwitch.isOn {
             
             Fieldbook.postSighting(name: newSightingObject.name!, date: returnDate(), details: newSightingObject.details!)
+            
         }
         
         showAlertWith(title: "Success", message: "Sighting Added Succesfully") { (_) in
             _ = self.navigationController?.popViewController(animated: true) }
     }
+    
     
     
     func showAlertWith(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
@@ -174,6 +179,39 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         present(alert, animated: true, completion: nil)
     }
     
+    //https://www.reddit.com/r/iOSProgramming/comments/4enrvf/uploading_anonymously_to_the_imgur_api/
+    func imgurAttempt(image: UIImage) {
+        print("\n\n\n\n\nTrying to post image")
+        let imageData = UIImageJPEGRepresentation(image, 0.9)
+        let base64Image = imageData?.base64EncodedString()
+        
+        let urlComponents = NSURLComponents(string: "https://api.imgur.com/3/upload")!
+        urlComponents.queryItems = [
+            NSURLQueryItem(name: "type", value: "base64") as URLQueryItem,
+            NSURLQueryItem(name: "image", value: base64Image) as URLQueryItem
+        ]
+        
+        let url = urlComponents.url
+        
+        let request = NSMutableURLRequest(url: url!)
+        request.setValue("Client-ID df4142918e77a28", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "POST"
+        
+        let session = URLSession.shared
+        let tache = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if let antwort = response as? HTTPURLResponse {
+                let code = antwort.statusCode
+                print("\n\n\nImgur code: \(code)")
+                print("\n\n\nImgur response: \(response)")
+            }
+            if let crap = error {
+                print("\n\n\nThis is crap: \(crap)")
+            }
+        }
+        tache.resume()
+        
+    }
+
     
     // MARK: - Image Picker Delegate Methods
     

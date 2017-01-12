@@ -204,6 +204,7 @@
 				TargetAttributes = {
 					4B3673441E240A870069967C = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = RKDEZ4QK32;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -428,6 +429,7 @@
 			baseConfigurationReference = 37906581642EE6C505C20ABB /* Pods-WildlifeSighting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RKDEZ4QK32;
 				INFOPLIST_FILE = WildlifeSighting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.C4Q.WildlifeSighting;
@@ -441,6 +443,7 @@
 			baseConfigurationReference = 63643D13A53EDB24BC35CBE6 /* Pods-WildlifeSighting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RKDEZ4QK32;
 				INFOPLIST_FILE = WildlifeSighting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.C4Q.WildlifeSighting;
