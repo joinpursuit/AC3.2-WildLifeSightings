@@ -47,7 +47,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     // MARK: - View Did Load
     
     override func viewDidLoad() {
-        navigationController?.setToolbarHidden(true, animated: false)
+        navigationController?.hidesBottomBarWhenPushed = true
         super.viewDidLoad()
         locationManager.delegate = self
         setupTextView()
@@ -153,13 +153,11 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         
         // Save Data to Fieldbook
         if shareToTwitterSwitch.isOn && currentLocationSwitch.isOn {
-            
-            Fieldbook.postSighting(name: newSightingObject.name!, date: returnDate(), weather: newSightingObject.weatherDescription!, lat: newSightingObject.latitude, long: newSightingObject.longitude, details: newSightingObject.details!)
+            Fieldbook.postSighting(name: newSightingObject.name!, date: newSightingObject.dateAndTime, weather: newSightingObject.weatherDescription!, lat: newSightingObject.latitude, long: newSightingObject.longitude, details: newSightingObject.details!)
         }
         
         if shareToTwitterSwitch.isOn && !currentLocationSwitch.isOn {
-            
-            Fieldbook.postSighting(name: newSightingObject.name!, date: returnDate(), details: newSightingObject.details!)
+            Fieldbook.postSighting(name: newSightingObject.name!, date: newSightingObject.dateAndTime, details: newSightingObject.details!)
         }
         
         showAlertWith(title: "Success", message: "Sighting Added Succesfully") { (_) in
