@@ -14,4 +14,11 @@ CocoaPods used:
 - [SwiftSpinner](https://github.com/icanzilb/SwiftSpinner): During data-transfer sessions, a visually-appealing spinning icon appears to show the end-user that a process is underway.
 - [ImagePicker](https://github.com/hyperoslo/ImagePicker): A UI pod that replaces the UIImagePickerController, it allows the user to take photos and/or choose gallery shots to append, simultaneously.
 
-![]("http://i.imgur.com/HHf8cPRl.jpg")
+
+| The First Screen        | Add Sighting Screen in Action           | 
+| ------------- |:-------------:| 
+| ![](http://i.imgur.com/HHf8cPRl.jpg)      | ![](http://i.imgur.com/TxjG55Tl.jpg) | 
+
+| The ImagePicker View        | SwiftSpinner while Transfering Data           | 
+| ------------- |:-------------:| 
+| ![](http://i.imgur.com/5kL7YKgl.jpg)      | ![](http://i.imgur.com/cPOzingl.jpg) | 
