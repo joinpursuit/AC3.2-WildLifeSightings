@@ -13,23 +13,15 @@ enum FieldbookModelParseError: Error {
 }
 
 class Fieldbook {
-    let id:         Int
-    let name:       String
-    let date:       String
-    let weather:    String
-    let lat:        Double
-    let long:       Double
-    let details:    String
+    let id: Int
+    let name: String
+    let date: String
+    let weather: String
+    let lat: Double
+    let long: Double
+    let details: String
     
-    init(
-        id:         Int,
-        name:       String,
-        date:       String,
-        weather:    String,
-        lat:        Double,
-        long:       Double,
-        details:    String
-        ) {
+    init(id: Int, name: String, date: String, weather: String, lat: Double, long: Double, details: String) {
         self.id = id
         self.name = name
         self.date = date
@@ -49,15 +41,7 @@ class Fieldbook {
             let details = dictionary["details"] as? String
             else { throw FieldbookModelParseError.parsing }
         
-        self.init(
-            id: id,
-            name: name,
-            date: date,
-            weather: weather,
-            lat: lat,
-            long: long,
-            details: details
-        )
+        self.init(id: id, name: name, date: date, weather: weather, lat: lat, long: long, details: details)
     }
     
     static func sights(from data: Data) -> [Fieldbook]? {
@@ -76,9 +60,11 @@ class Fieldbook {
                 }
             }
         }
+            
         catch {
             print("Error encountered with \(error)")
         }
+        
         return sightingsToReturn
     }
 }

@@ -298,7 +298,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Mrn-Gs-D8s" firstAttribute="trailing" secondItem="zNb-NJ-NTi" secondAttribute="trailingMargin" id="02k-sJ-lgF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Uz7-nG-r2z" secondAttribute="trailing" id="06C-3k-03o"/>
