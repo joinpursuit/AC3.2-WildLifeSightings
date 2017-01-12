@@ -13,7 +13,7 @@ import CoreLocation
 import CoreData
 
 
-class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocationManagerDelegate, UITextViewDelegate {
+class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocationManagerDelegate, UITextViewDelegate, UITextFieldDelegate {
     
     // MARK: - Outlets
     
@@ -52,13 +52,8 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         locationManager.delegate = self
         setupTextView()
         self.automaticallyAdjustsScrollViewInsets = false
+        bringUpTexts()
 
-        sightingImageView.isHidden = true
-        photoBottomConstraint.isActive = false
-        photoBottomConstraint =
-            sightingImageView.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
-//            takePhotoButton.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
-        photoBottomConstraint.isActive = true
         
         //Source: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
         //Looks for single or multiple taps.
@@ -74,12 +69,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         let imagePickerController = ImagePickerController()
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
-
-        sightingImageView.isHidden = false
-        photoBottomConstraint.isActive = false
-        photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 8.0)
-        photoBottomConstraint.isActive = true
-
+        bringDownTexts()
         takePhotoButton.setTitle("Retake Photo?", for: .normal)
     }
     
@@ -213,7 +203,7 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         locationManager.stopUpdatingLocation()
     }
     
-    // MARK: - TextView setup
+    // MARK: - TextView and Textfield setup
     
     func setupTextView() {
         //SOURCE: http://stackoverflow.com/questions/20790907/uitextview-to-mimic-uitextfield-for-basic-round-corner-text-field
@@ -225,14 +215,45 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         addDetailsLabel.isHidden = true
-        return
+        bringUpTexts()
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         if sightingDetailsTextView.text.isEmpty || sightingDetailsTextView.text == "" {
             addDetailsLabel.isHidden = false
         }
+        if sightingImageView.image != nil {
+            bringDownTexts()
+        }
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        bringUpTexts()
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if sightingImageView.image != nil {
+            bringDownTexts()
+        }
+        return true
+    }
+    
+    func bringUpTexts() {
+        photoBottomConstraint.isActive = false
+        if sightingImageView.image != nil {
+            photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -80.0)
+        } else {
+            photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
+        }
+        photoBottomConstraint.isActive = true
+    }
+    
+    func bringDownTexts() {
+
+        photoBottomConstraint.isActive = false
+        photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 8.0)
+        photoBottomConstraint.isActive = true
     }
     
     func dismissKeyboard() {
@@ -246,5 +267,6 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         dateformatter.dateFormat = "MM/dd/yyyy"
         return dateformatter.string(from: rightNow)
     }
+
     
 }
