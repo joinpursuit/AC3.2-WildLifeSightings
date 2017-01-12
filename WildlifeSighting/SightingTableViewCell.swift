@@ -14,6 +14,9 @@ class SightingTableViewCell: UITableViewCell {
     @IBOutlet weak var sightingTitleLabel: UILabel!
     @IBOutlet weak var sightingDateAndTimeLabel: UILabel!
     @IBOutlet weak var infoButton: UIButton!
+    
+    @IBOutlet weak var weatherEmojiLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

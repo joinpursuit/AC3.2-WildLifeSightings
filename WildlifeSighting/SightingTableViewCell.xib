@@ -43,6 +43,12 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09E-ll-MLd">
                         <rect key="frame" x="383" y="66" width="22" height="22"/>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GoB-GC-303">
+                        <rect key="frame" x="363" y="52" width="0.0" height="53.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bhD-2U-ZUf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="70W-XS-cIu" secondAttribute="bottom" constant="8" symbolic="YES" id="3AE-NM-JT5"/>
@@ -52,9 +58,12 @@
                     <constraint firstItem="Vhs-2D-8CI" firstAttribute="top" secondItem="70W-XS-cIu" secondAttribute="top" id="W0V-rh-Jjo"/>
                     <constraint firstItem="70W-XS-cIu" firstAttribute="leading" secondItem="bhD-2U-ZUf" secondAttribute="leading" id="bVw-Ye-MEk"/>
                     <constraint firstItem="70W-XS-cIu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="cF8-wO-7Mq"/>
+                    <constraint firstItem="GoB-GC-303" firstAttribute="baseline" secondItem="bhD-2U-ZUf" secondAttribute="baseline" id="ca2-t3-LDb"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="bhD-2U-ZUf" secondAttribute="bottom" constant="8" id="ffV-oS-kRg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="09E-ll-MLd" secondAttribute="trailing" id="ghs-sh-15c"/>
                     <constraint firstItem="09E-ll-MLd" firstAttribute="centerY" secondItem="Vhs-2D-8CI" secondAttribute="centerY" id="miE-6z-q6R"/>
+                    <constraint firstItem="GoB-GC-303" firstAttribute="top" secondItem="70W-XS-cIu" secondAttribute="top" id="re9-pu-a5T"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="GoB-GC-303" secondAttribute="trailing" constant="42" id="wS5-zZ-TIQ"/>
                     <constraint firstItem="Vhs-2D-8CI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="zil-IM-eiM"/>
                 </constraints>
             </tableViewCellContentView>
@@ -63,6 +72,7 @@
                 <outlet property="sightingDateAndTimeLabel" destination="bhD-2U-ZUf" id="MjB-WY-aYn"/>
                 <outlet property="sightingImageView" destination="Vhs-2D-8CI" id="fF8-Dk-GSv"/>
                 <outlet property="sightingTitleLabel" destination="70W-XS-cIu" id="Bnx-nc-7kk"/>
+                <outlet property="weatherEmojiLabel" destination="GoB-GC-303" id="gkY-KS-J5c"/>
             </connections>
             <point key="canvasLocation" x="129.5" y="29"/>
         </tableViewCell>

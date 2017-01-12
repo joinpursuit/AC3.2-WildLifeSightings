@@ -224,7 +224,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         let object = fetchedResultsController.object(at: indexPath)
         cell.sightingTitleLabel.text = object.name!
         cell.sightingDateAndTimeLabel.text = object.dateAndTime
-        
+        cell.weatherEmojiLabel.text = object.weatherEmoji
         if let thumbData = object.thumbImageData as? Data {
             cell.sightingImageView?.image = UIImage(data: thumbData)
         } else {
