@@ -1,5 +1,7 @@
 # AC3.2-WildLifeSightings
 
+![](http://i.imgur.com/HaavZZ6.jpg)
+
 **WildLifeSightings** is a subject-tracking app that utilizies Core Data to store meaningful, persistant mutable entries (including storing pointers to external images as binary data). 
 
 This app mainly utilizes Core Location and Core Data to store client-side photos & information, which is fetched and displayed onto a mapView. 
