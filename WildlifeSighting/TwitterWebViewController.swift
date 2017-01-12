@@ -38,13 +38,13 @@ class TwitterWebViewController: UIViewController, WKUIDelegate,  WKNavigationDel
         setUpWebView()
         let myURL = URL(string: "https://fieldbook.com/sheets/58757bb45de269040063ab7e")
         let myRequest = URLRequest(url: myURL!)
-        webView.load(myRequest)
         
         backButton.isEnabled = false
         forwardButton.isEnabled = false
         webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         self.webView.navigationDelegate = self
+        webView.load(myRequest)
     }
     
     
@@ -70,7 +70,6 @@ class TwitterWebViewController: UIViewController, WKUIDelegate,  WKNavigationDel
     }
     
     @IBAction func browserButtonPressed(_ sender: UIBarButtonItem) {
-        
         switch sender {
         case backButton:
             webView.goBack()
