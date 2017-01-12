@@ -30,6 +30,12 @@ extension Sighting {
         return objectDateString
     }
     
+    var postDate: String {
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "MM/dd/yyyy"
+        return dateformatter.string(from: self.date as! Date)
+    }
+    
     var location: CLLocation {
         return CLLocation(latitude: self.latitude, longitude: self.longitude)
     }
