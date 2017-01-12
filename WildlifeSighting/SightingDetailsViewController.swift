@@ -34,12 +34,9 @@ class SightingDetailsViewController: UIViewController {
 
         updateLabels()
         self.automaticallyAdjustsScrollViewInsets = false
+        // Source: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SightingDetailsViewController.dismissKeyboard))
-        
-        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-        //tap.cancelsTouchesInView = false
-        
         view.addGestureRecognizer(tap)
     }
     
@@ -62,6 +59,7 @@ class SightingDetailsViewController: UIViewController {
         
         if let weather = sighting.weatherDescription, weather != "" {
             dateWeatherText += "\nWeather: " + weather
+            dateWeatherText += "\nTemperature: " + String(sighting.temperature)
         }
         dateWeatherLocationTextView.text = dateWeatherText
     }
@@ -78,6 +76,8 @@ class SightingDetailsViewController: UIViewController {
             detailsTextView.layer.borderColor = borderColor.cgColor
             detailsTextView.layer.borderWidth = 0.6;
             detailsTextView.layer.cornerRadius = 6.0;
+            detailsTextView.layer.backgroundColor = UIColor.white.withAlphaComponent(1.0).cgColor
+
             editSaveButton.setTitle("Save", for: .normal)
         } else {
             guard let sightingName = titleTextField.text, sightingName.characters.count > 0 else {
