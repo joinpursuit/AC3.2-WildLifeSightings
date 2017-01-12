@@ -328,11 +328,23 @@
                     </view>
                     <navigationItem key="navigationItem" id="6xv-PK-8zC">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="See Our Back End?" id="mWz-Of-Lp8">
+                        <barButtonItem key="leftBarButtonItem" title="🌐" id="mWz-Of-Lp8">
                             <connections>
                                 <segue destination="5IH-0W-CG3" kind="show" identifier="webViewSegue" id="qw4-rJ-B4r"/>
                             </connections>
                         </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="DZM-dG-imV">
+                            <rect key="frame" x="89" y="7" width="197" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Date"/>
+                                <segment title="A - Z"/>
+                                <segment title="Weather"/>
+                            </segments>
+                            <connections>
+                                <action selector="sortTypeDidChange:" destination="ALO-41-Gex" eventType="valueChanged" id="xAL-a9-1uR"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="j7d-3N-dHm">
                             <connections>
                                 <segue destination="aZF-oG-2AP" kind="show" id="Pek-nd-Vy2"/>

@@ -18,13 +18,6 @@ extension Sighting {
         return formatter.string(from: date as! Date)
     }
     
-    var time: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .medium
-        return formatter.string(from: date as! Date)
-    }
-    
     var dateString: String {
         let date = self.date!
         let formatter = DateFormatter()
@@ -41,6 +34,13 @@ extension Sighting {
         return CLLocation(latitude: self.latitude, longitude: self.longitude)
     }
     
+    var firstLetter: String {
+        return String(self.name!.characters.first!).uppercased()
+    }
+    
+    var weatherString: String {
+        return self.weatherDescription ?? "?"
+    }
     
 }
 

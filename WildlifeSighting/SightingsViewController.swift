@@ -11,6 +11,12 @@ import CoreLocation
 import MapKit
 import CoreData
 
+enum SortType {
+    case name
+    case weather
+    case date
+}
+
 class SightingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate {
     
     
@@ -30,6 +36,8 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     var fetchedResultsController: NSFetchedResultsController<Sighting>!
     
+    var sortType: SortType = .date
+    
     // MARK: - viewDidLoad and setUp
     
     override func viewDidLoad() {
@@ -43,6 +51,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setToolbarHidden(true, animated: false)
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         setMapPins()
     }
     
@@ -60,6 +69,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setMapPins() {
+        mapView.removeAnnotations(mapView.annotations)
         if let sightings = fetchedResultsController.fetchedObjects {
             for object in sightings {
                 let pinAnnotation = SightingMKPointAnnotation()
@@ -72,6 +82,11 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    func positionTableAndMap() {
+        tableView.reloadData()
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        positionMap(to: IndexPath(row: 0, section: 0), radius: 100000)
+    }
     
     
     @IBAction func mapOrDataSegmentedControlChanged(_ sender: UISegmentedControl) {
@@ -103,15 +118,41 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    @IBAction func sortTypeDidChange(_ sender: UISegmentedControl) {
+        switch  sender.selectedSegmentIndex {
+        case 0:
+            sortType = .date
+        case 1:
+            sortType = .name
+        case 2:
+            sortType = .weather
+        default:
+            break
+        }
+        initializeFetchedResultsController()
+    }
+
     
     // MARK: - Initialize Fetched Results Controller
     
     func initializeFetchedResultsController() {
         let request: NSFetchRequest<Sighting> = Sighting.fetchRequest()
-        let dateSort = NSSortDescriptor(key: #keyPath(Sighting.date), ascending: false)
-        request.sortDescriptors = [dateSort]
-        let sectionName = "dateString"
 
+        var sectionName = ""
+        let dateSort = NSSortDescriptor(key: #keyPath(Sighting.date), ascending: false)
+        let nameSort = NSSortDescriptor(key: #keyPath(Sighting.name), ascending: true)
+        let weatherSort = NSSortDescriptor(key: #keyPath(Sighting.weatherDescription), ascending: false)
+        switch sortType {
+        case .date:
+            request.sortDescriptors = [dateSort]
+            sectionName = "dateString"
+        case .name:
+            request.sortDescriptors = [nameSort, dateSort]
+            sectionName = "firstLetter"
+        case .weather:
+            request.sortDescriptors = [weatherSort, nameSort, dateSort]
+            sectionName = "weatherString"
+        }
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: mainContext, sectionNameKeyPath: sectionName, cacheName: nil)
         fetchedResultsController.delegate = self
         do {
@@ -119,11 +160,12 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
+        positionTableAndMap()
     }
     
     
     
-    // MARK: - mapView delegate methods
+    // MARK: - mapView
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let myAnnotation = view.annotation as? SightingMKPointAnnotation,
@@ -133,8 +175,20 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
         }
     }
-
     
+    func positionMap(to indexPath: IndexPath, radius: Double) {
+        let object = fetchedResultsController.object(at: indexPath)
+        let validLocation = CLLocation(latitude: object.latitude, longitude: object.longitude)
+        mapView.setRegion(MKCoordinateRegionMakeWithDistance(validLocation.coordinate, radius, radius), animated: true)
+        for annotaion in mapView.annotations {
+            if let myAnnotaion = annotaion as? SightingMKPointAnnotation {
+                if myAnnotaion.managedObject == object {
+                    mapView.selectAnnotation(myAnnotaion, animated: true)
+                }
+            }
+        }
+    }
+
     
     
     // MARK: - tableView delegate methods
@@ -192,21 +246,13 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
                 fatalError("Failed to save context: \(error)")
             }
         }
+        setMapPins()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let object = fetchedResultsController.object(at: indexPath)
-        let validLocation = CLLocation(latitude: object.latitude, longitude: object.longitude)
-        mapView.setRegion(MKCoordinateRegionMakeWithDistance(validLocation.coordinate, 5000.0, 5000.0), animated: true)
-
-        for annotaion in mapView.annotations {
-            if let myAnnotaion = annotaion as? SightingMKPointAnnotation {
-                if myAnnotaion.managedObject == object {
-                    mapView.selectAnnotation(myAnnotaion, animated: true)
-                }
-            }
-        }
+        positionMap(to: indexPath, radius: 4000.0)
     }
+    
     
     //MARK: - NSFetchedResultsController Delegate Methods
     
@@ -243,6 +289,8 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
             tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
     }
+    
+    // MARK: - Segues
 
     func buttonTapped(_ sender:UIButton!){
         self.performSegue(withIdentifier: "SegueToDetailsVC", sender: sender)
