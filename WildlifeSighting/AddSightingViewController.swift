@@ -59,12 +59,9 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
 //            takePhotoButton.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
         photoBottomConstraint.isActive = true
         
+        //Source: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddSightingViewController.dismissKeyboard))
-        
-        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-        //tap.cancelsTouchesInView = false
-        
         view.addGestureRecognizer(tap)
  
     }
