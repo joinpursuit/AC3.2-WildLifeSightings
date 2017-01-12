@@ -41,5 +41,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>&quot;WildlifeSighting needs to be able access the camera&quot;</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>&quot;WildlifeSighting needs to be able access the photo library&quot;</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;WildlifeSighting needs to be able access your location&quot;</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>&quot;WildlifeSighting needs to be able to access your location always!&quot;</string>
 </dict>
 </plist>
