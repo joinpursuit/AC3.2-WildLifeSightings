@@ -35,7 +35,7 @@ class TwitterWebViewController: UIViewController, WKUIDelegate,  WKNavigationDel
         navigationController?.setToolbarHidden(false, animated: false)
         super.viewDidLoad()
         setUpWebView()
-        let myURL = URL(string: "https://fieldbook.com/sheets/58757bb45de269040063ab7e")
+        let myURL = URL(string: "https://fieldbook.com/sheets/58757bb45de269040063ab7e/n1")
         let myRequest = URLRequest(url: myURL!)
         
         backButton.isEnabled = false
