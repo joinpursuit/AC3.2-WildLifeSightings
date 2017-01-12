@@ -31,7 +31,7 @@ The 3-day minimum viable product would allow the end-user to save persistent dat
 
 The agile-lite-alike method allowed all team members to work without overlap or requiring additional time to coordinate. By mid-day of Day 3, most features were implemented to viable standards; remaining time was spent to improve existing features and to extend the feature-set of the app within reason.
 
-![](http://i.imgur.com/dfiGMo2.jpg)
+![](http://i.imgur.com/Pt4JlEp.jpg)
 
 ## Team \#STV
 [Sabrina Ip](https://github.com/sabrinaip): Layout
