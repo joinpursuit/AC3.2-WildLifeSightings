@@ -4,6 +4,8 @@
 
 This app mainly utilizes Core Location and Core Data to store client-side photos & information, which is fetched and displayed onto a mapView. 
 
+The layout is done via storyboards and nibs and programmatically.
+
 API's used:
 - [Dark Skys Weather](https://darksky.net/dev/) (No Auth): A no-nonsense forecast API to attach current weather conditions to our Sighting entity.
 - [Fieldbook](https://fieldbook.com/) (Basic Auth): While an object is saved into Core Data, a portion of the information can be POST'ed for external review.
