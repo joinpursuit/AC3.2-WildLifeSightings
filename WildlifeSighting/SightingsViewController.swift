@@ -97,7 +97,9 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
             tableView.isHidden = false
             mapView.isHidden = false
             tableViewBottomLayoutConstraint.isActive = false
-            mapViewTopLayoutConstraint.isActive = false
+            if let mapViewTopLayoutConstraint = mapViewTopLayoutConstraint {
+                mapViewTopLayoutConstraint.isActive = false
+            }
             tableViewBottomLayoutConstraint = tableView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -4.0)
             tableViewBottomLayoutConstraint.isActive = true
             mapViewTopLayoutConstraint = mapView.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 4.0)
@@ -107,12 +109,15 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
             mapView.isHidden = true
             tableView.isHidden = false
             tableViewBottomLayoutConstraint.isActive = false
+            mapViewTopLayoutConstraint.isActive = false
             tableViewBottomLayoutConstraint = tableView.bottomAnchor.constraint(equalTo: mapOrDataSegmentedControl.topAnchor, constant: -8.0)
             tableViewBottomLayoutConstraint.isActive = true
         case 2:
             tableView.isHidden = true
             mapView.isHidden = false
-            mapViewTopLayoutConstraint.isActive = false
+            if let mapViewTopLayoutConstraint = mapViewTopLayoutConstraint {
+                mapViewTopLayoutConstraint.isActive = false
+            }
             mapViewTopLayoutConstraint = mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80.0)
             mapViewTopLayoutConstraint.isActive = true
         default:
