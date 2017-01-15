@@ -19,16 +19,12 @@ enum SortType {
 
 class SightingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, MKMapViewDelegate, NSFetchedResultsControllerDelegate {
     
-    
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapOrDataSegmentedControl: UISegmentedControl!
-    
-    
     @IBOutlet weak var sortsegmentControl: UISegmentedControl!
     @IBOutlet weak var tableViewBottomLayoutConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var mapViewTopLayoutConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
@@ -49,7 +45,6 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         setDelegates()
         setUpTableView()
         initializeFetchedResultsController()
-        setMapPins()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +52,6 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         sortsegmentControl.selectedSegmentIndex = 0
         initializeFetchedResultsController()
         navigationController?.setToolbarHidden(true, animated: false)
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         setMapPins()
     }
     
@@ -89,9 +83,11 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func positionTableAndMap() {
-        tableView.reloadData()
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        positionMap(to: IndexPath(row: 0, section: 0), radius: 100000)
+        if let fetchedObjects = fetchedResultsController.fetchedObjects, fetchedObjects.count > 0 {
+            tableView.reloadData()
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            positionMap(to: IndexPath(row: 0, section: 0), radius: 100000)
+        }
     }
     
     
@@ -165,6 +161,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
+        setMapPins()
         positionTableAndMap()
     }
     
@@ -194,8 +191,6 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 
-    
-    
     // MARK: - tableView delegate methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -224,7 +219,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         let object = fetchedResultsController.object(at: indexPath)
         cell.sightingTitleLabel.text = object.name!
         cell.sightingDateAndTimeLabel.text = object.dateAndTime
-        
+        cell.weatherEmojiLabel.text = object.weatherEmoji
         if let thumbData = object.thumbImageData as? Data {
             cell.sightingImageView?.image = UIImage(data: thumbData)
         } else {
@@ -232,7 +227,6 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         cell.infoButton.addTarget(self, action: #selector(self.buttonTapped(_:)), for: UIControlEvents.touchUpInside)
-
         return cell
     }
     
@@ -251,7 +245,7 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
                 fatalError("Failed to save context: \(error)")
             }
         }
-        setMapPins()
+        initializeFetchedResultsController()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

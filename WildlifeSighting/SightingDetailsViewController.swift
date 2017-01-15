@@ -55,6 +55,7 @@ class SightingDetailsViewController: UIViewController {
         if let weather = sighting.weatherDescription, weather != "" {
             dateWeatherText += "\nWeather: " + weather
             dateWeatherText += "\nTemperature: " + String(sighting.temperature)
+            dateWeatherText += "    " + sighting.weatherEmoji
         }
         dateWeatherLocationTextView.text = dateWeatherText
     }

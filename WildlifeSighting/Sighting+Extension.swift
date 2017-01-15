@@ -48,6 +48,31 @@ extension Sighting {
         return self.weatherDescription ?? "?"
     }
     
+    
+    // this solution is a hack. I want to add another field to core data to save a 'waetherType', which comes from the DarkSkies API and create an enum out of it.
+    var weatherEmoji: String {
+        if let weather = weatherDescription {
+            switch weather {
+            case "Snow":
+                return "🌨"
+            case "Rain":
+                return "🌧"
+            case "Partly Cloudy":
+                return "⛅️"
+            case "Overcast":
+                return "☁️"
+            case "Mostly Cloudy":
+                return "🌥"
+            case "Light Rain":
+                return "🌦"
+            case "Sunny", "Sun":
+                return "☀️"
+            default:
+                return ""
+            }
+        }
+        return ""
+    }
 }
 
 
