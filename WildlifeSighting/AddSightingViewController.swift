@@ -25,12 +25,14 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     @IBOutlet weak var shareToTwitterSwitch: UISwitch!
     @IBOutlet weak var takePhotoButton: UIButton!
     @IBOutlet weak var photoBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var locationSwitchBottomConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
     var sightingPhoto: UIImage?
     var currentWeather: DarkSkiesWeather?
     var currentLocation: CLLocation?
+    //var keyboardHeight: CGFloat = 8.0
     
     let locationManager: CLLocationManager = {
         let locMan: CLLocationManager = CLLocationManager()
@@ -62,6 +64,9 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddSightingViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
     }
  
  
@@ -71,7 +76,6 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         let imagePickerController = ImagePickerController()
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
-        bringDownTexts()
         takePhotoButton.setTitle("Retake Photo?", for: .normal)
     }
     
@@ -214,6 +218,9 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         guard images.count > 0 else { return }
         sightingPhoto = images[0]
         sightingImageView.image = images[0]
+        
+        // TODO: change constraints
+        bringDownTexts()
     }
     
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
@@ -257,37 +264,23 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         addDetailsLabel.isHidden = true
-        bringUpTexts()
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         if sightingDetailsTextView.text.isEmpty || sightingDetailsTextView.text == "" {
             addDetailsLabel.isHidden = false
         }
-        if sightingImageView.image != nil {
-            bringDownTexts()
-        }
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        bringUpTexts()
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if sightingImageView.image != nil {
-            bringDownTexts()
-        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
         return true
     }
     
     func bringUpTexts() {
         photoBottomConstraint.isActive = false
-        if sightingImageView.image != nil {
-            photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -80.0)
-        } else {
-            photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
-        }
+        photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor, constant: 8.0)
         photoBottomConstraint.isActive = true
     }
     
@@ -295,6 +288,35 @@ class AddSightingViewController: UIViewController, ImagePickerDelegate, CLLocati
         photoBottomConstraint.isActive = false
         photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 8.0)
         photoBottomConstraint.isActive = true
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            locationSwitchBottomConstraint.isActive = false
+            locationSwitchBottomConstraint = currentLocationSwitch.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: -keyboardHeight - 8.0)
+            locationSwitchBottomConstraint.isActive = true
+            
+            if sightingImageView.image == nil {
+                bringUpTexts()
+            } else {
+                photoBottomConstraint.isActive = false
+                photoBottomConstraint = sightingImageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -keyboardHeight/2)
+                photoBottomConstraint.isActive = true
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        locationSwitchBottomConstraint.isActive = false
+        locationSwitchBottomConstraint = currentLocationSwitch.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: -8.0)
+        locationSwitchBottomConstraint.isActive = true
+
+        if sightingImageView.image == nil {
+            bringUpTexts()
+        } else {
+            bringDownTexts()
+        }
     }
     
     func dismissKeyboard() {
