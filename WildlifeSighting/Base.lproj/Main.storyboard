@@ -27,7 +27,7 @@
                                 <rect key="frame" x="16" y="418" width="343" height="202"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="aZF-oG-2AP" id="H1I-PN-JEa"/>
                                 </connections>
@@ -36,7 +36,7 @@
                                 <rect key="frame" x="16" y="628" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include current location and weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SD-0I-RSF">
-                                <rect key="frame" x="73" y="628" width="280" height="31"/>
+                                <rect key="frame" x="73" y="633.5" width="280" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -71,7 +71,6 @@
                         <constraints>
                             <constraint firstItem="9SD-0I-RSF" firstAttribute="leading" secondItem="B6M-kQ-Dpb" secondAttribute="trailing" constant="8" symbolic="YES" id="AtQ-Va-F3T"/>
                             <constraint firstItem="Rv3-Vq-kFD" firstAttribute="top" secondItem="EVT-o9-l30" secondAttribute="bottom" constant="8" symbolic="YES" id="Bk8-xR-rNu"/>
-                            <constraint firstItem="48P-WW-TSF" firstAttribute="top" secondItem="9SD-0I-RSF" secondAttribute="bottom" constant="8" id="FIa-XQ-fVn"/>
                             <constraint firstItem="lPa-PS-3xw" firstAttribute="top" secondItem="Yqi-Nn-GLk" secondAttribute="top" constant="8" id="JE5-Id-GOP"/>
                             <constraint firstItem="EVT-o9-l30" firstAttribute="centerX" secondItem="Ti2-04-uMP" secondAttribute="centerX" id="JJt-Iu-grm"/>
                             <constraint firstAttribute="leadingMargin" secondItem="B6M-kQ-Dpb" secondAttribute="leading" id="KWz-0P-pQx"/>
@@ -102,6 +101,7 @@
                     <connections>
                         <outlet property="addDetailsLabel" destination="lPa-PS-3xw" id="Qg6-CY-AJ0"/>
                         <outlet property="currentLocationSwitch" destination="B6M-kQ-Dpb" id="0OT-IE-0Ss"/>
+                        <outlet property="locationSwitchBottomConstraint" destination="LDs-wD-fkO" id="hWQ-KK-bhW"/>
                         <outlet property="photoBottomConstraint" destination="ToI-bl-oaQ" id="qph-3k-bfk"/>
                         <outlet property="sightingDetailsTextView" destination="Yqi-Nn-GLk" id="jM0-MR-WdR"/>
                         <outlet property="sightingImageView" destination="BIP-35-CVP" id="dEB-1f-dbN"/>
@@ -359,7 +359,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="xLa-4l-NvX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="J5M-GK-jEV" userLabel="Map"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6AR-ol-LQc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6AR-ol-LQc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

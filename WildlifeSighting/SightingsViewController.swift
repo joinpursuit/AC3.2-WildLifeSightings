@@ -109,7 +109,9 @@ class SightingsViewController: UIViewController, UITableViewDelegate, UITableVie
             mapView.isHidden = true
             tableView.isHidden = false
             tableViewBottomLayoutConstraint.isActive = false
-            mapViewTopLayoutConstraint.isActive = false
+            if let mapViewTopLayoutConstraint = mapViewTopLayoutConstraint {
+                mapViewTopLayoutConstraint.isActive = false
+            }
             tableViewBottomLayoutConstraint = tableView.bottomAnchor.constraint(equalTo: mapOrDataSegmentedControl.topAnchor, constant: -8.0)
             tableViewBottomLayoutConstraint.isActive = true
         case 2:
